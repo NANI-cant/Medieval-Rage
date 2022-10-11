@@ -1,4 +1,5 @@
 using Architecture.Services;
+using Gameplay.Player;
 using InputLogic;
 using UnityEngine;
 using Zenject;
@@ -8,6 +9,7 @@ namespace Architecture.Bootstrappers {
         [SerializeField] private UpdateContainer _updateContainer;
         [SerializeField] private Camera _mainCamera;
         [SerializeField] private LayerMask _touchableLayers;
+        [SerializeField] private PlayerInputBrain _player;
 
         private TouchInputService _inputService;
 
@@ -16,6 +18,7 @@ namespace Architecture.Bootstrappers {
 
             _updateContainer.Add(_inputService);
 
+            Container.BindInstance<PlayerInputBrain>(_player);
             Container.BindInstance<IInputService>(_inputService);
         }
     }
