@@ -1,27 +1,22 @@
 using Architecture.Services;
 using UnityEngine;
-using Zenject;
 
 namespace Gameplay.Player {
-    [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(Character))]
     public class PlayerInputBrain : MonoBehaviour {
         private IInputService _inputService;
-        private Mover _mover;
+        private Character _character;
 
-        [Inject]
         public void Construct(IInputService inputService) {
             _inputService = inputService;
         }
 
         private void Awake() {
-            _mover = GetComponent<Mover>();
+            _character = GetComponent<Character>();
         }
 
-        private void OnEnable() => _inputService.TapDetected += OnTapDetected;
-        private void OnDisable() => _inputService.TapDetected -= OnTapDetected;
-
-        private void OnTapDetected(Vector3 position) {
-            _mover.MoveTo(position);
+        public void Update() {
+            _character.Move(_inputService.Direction);
         }
     }
 }

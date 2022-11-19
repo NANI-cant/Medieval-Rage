@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Architecture.Services {
     public interface IInputService {
-        event Action<Vector3> TapDetected;
+        Vector3 Direction { get; }
         void Enable();
         void Disable();
     }

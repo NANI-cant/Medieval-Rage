@@ -1,25 +1,24 @@
 using Architecture.Services;
-using Gameplay.Player;
-using InputLogic;
+using Architecture.Services.Impl;
 using UnityEngine;
 using Zenject;
 
 namespace Architecture.Bootstrappers {
-    public class GameplayBootstrapper : MonoInstaller {
-        [SerializeField] private UpdateContainer _updateContainer;
-        [SerializeField] private Camera _mainCamera;
-        [SerializeField] private LayerMask _touchableLayers;
-        [SerializeField] private PlayerInputBrain _player;
+    public class GameplayBootstrapper : MonoInstaller
+    {
+        [SerializeField] private Joystick _joystick;
 
-        private TouchInputService _inputService;
-
-        public override void InstallBindings() {
-            _inputService = new TouchInputService(_mainCamera, _touchableLayers);
-
-            _updateContainer.Add(_inputService);
-
-            Container.BindInstance<PlayerInputBrain>(_player);
-            Container.BindInstance<IInputService>(_inputService);
+        public override void InstallBindings()
+        {
+            Container.Bind<Joystick>().FromInstance(_joystick).AsSingle().NonLazy();
+            Container.Bind<IInputService>().To<JoystickInputService>().AsSingle().NonLazy();
+            Container.Bind<Camera>().FromInstance(Camera.main).AsSingle().NonLazy();
+            
+            BindService<GameplayFactory>();
+            BindService<GameStateMachine>();
         }
-    }
+
+        private void BindService<TService>() 
+			=> Container.BindInterfacesAndSelfTo<TService>().AsSingle().NonLazy();
+    }    
 }
