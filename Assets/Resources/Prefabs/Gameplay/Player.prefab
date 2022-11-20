@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1374338120}
   - component: {fileID: 1374338122}
   - component: {fileID: 1374338121}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6310669197092762519}
   - component: {fileID: 6310669197092762517}
   - component: {fileID: 6310669197092762516}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,9 +179,9 @@ GameObject:
   - component: {fileID: 6310669198630374217}
   - component: {fileID: 6310669198630374216}
   - component: {fileID: 1258860752533842501}
+  - component: {fileID: 9144759002041559268}
   - component: {fileID: 3034714778614914335}
-  - component: {fileID: 2176655173072445661}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,6 +241,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ee5589011685af46924e0af5ff9552d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9144759002041559268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310669198630374221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcbba517577dbd64191c3832169588c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravityAcceleration: 9.8
 --- !u!143 &3034714778614914335
 CharacterController:
   m_ObjectHideFlags: 0
@@ -259,19 +272,3 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &2176655173072445661
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6310669198630374221}
-  serializedVersion: 2
-  m_Mass: 80
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0

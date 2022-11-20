@@ -1,5 +1,6 @@
 using Architecture.Services;
 using Architecture.Services.Impl;
+using Architecture.StateMachine;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +14,7 @@ namespace Architecture.Bootstrappers {
             Container.Bind<Joystick>().FromInstance(_joystick).AsSingle().NonLazy();
             Container.Bind<IInputService>().To<JoystickInputService>().AsSingle().NonLazy();
             Container.Bind<Camera>().FromInstance(Camera.main).AsSingle().NonLazy();
-            
+
             BindService<GameplayFactory>();
             BindService<GameStateMachine>();
         }

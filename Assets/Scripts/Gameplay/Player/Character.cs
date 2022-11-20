@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Gameplay.Player {
     [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(GravityReactor))]
     public class Character : MonoBehaviour {
         private Mover _mover;
 
