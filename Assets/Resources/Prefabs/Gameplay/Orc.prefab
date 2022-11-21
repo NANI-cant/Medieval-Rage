@@ -71,6 +71,8 @@ GameObject:
   - component: {fileID: 3565645795122849711}
   - component: {fileID: 4254101857074708783}
   - component: {fileID: 2810686971337908777}
+  - component: {fileID: 958736878750330817}
+  - component: {fileID: 4674299217271208330}
   m_Layer: 7
   m_Name: Orc
   m_TagString: Untagged
@@ -154,6 +156,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6222e6a7840467cbdb84d3202e8f07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &958736878750330817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534366791077133355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0374b97a740ba14da18532017175b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4674299217271208330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534366791077133355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d788da69b5a6df45af768793bef3e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7534366790051802908

@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b684c4bdf8d4cec9e6fd3d30190c7af, type: 3}
   m_Name: EnemyMetric
   m_EditorClassIdentifier: 
+  _maxHealth: 100
   _speed: 3
   _aggroDuration: 5
+  _attackSpeed: 1
+  _attackData:
+    <Damage>k__BackingField: 0
