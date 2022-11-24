@@ -29,7 +29,7 @@ namespace Gameplay.Enemy {
         }
 
         public void Stop() {
-            _agent.isStopped = true;
+            _agent.SetDestination(transform.position);
         }
     }
 }

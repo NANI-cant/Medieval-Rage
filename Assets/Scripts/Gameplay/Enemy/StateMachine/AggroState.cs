@@ -37,6 +37,7 @@ namespace Gameplay.Enemy.StateMachine {
 
         public override void Exit() {
             _autoAttack.TurnOff();
+            //_aggro.TurnOff();
 
             _autoAttack.TargetCaptured -= Fight;
             _autoAttack.TargetLost -= Approach;
