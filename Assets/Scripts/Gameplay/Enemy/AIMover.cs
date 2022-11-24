@@ -5,6 +5,8 @@ using UnityEngine.AI;
 namespace Gameplay.Enemy {
     [RequireComponent(typeof(NavMeshAgent))]
     public class AIMover : MonoBehaviour {
+        public event Action ReturnedToSpawn;
+        
         private NavMeshAgent _agent;
         private Vector3 _startPosition;
 
@@ -18,11 +20,16 @@ namespace Gameplay.Enemy {
         }
 
         public void MoveTo(Vector3 destination) {
-            _agent.destination = destination;
+            _agent.SetDestination(destination);
         }
 
         public void ReturnToSpawn() {
             MoveTo(_startPosition);
+            this.Invoke(() => ReturnedToSpawn?.Invoke(), _agent.remainingDistance / _agent.speed);
+        }
+
+        public void Stop() {
+            _agent.isStopped = true;
         }
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _speed: 3
+  _attackTargetPriority: 2
   _aggroDuration: 5
   _attackSpeed: 1
   _attackData:

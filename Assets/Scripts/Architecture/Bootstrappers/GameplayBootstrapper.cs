@@ -1,4 +1,3 @@
-using Architecture.Services;
 using Architecture.Services.Impl;
 using Architecture.StateMachine;
 using UnityEngine;
@@ -12,7 +11,7 @@ namespace Architecture.Bootstrappers {
         public override void InstallBindings()
         {
             Container.Bind<Joystick>().FromInstance(_joystick).AsSingle().NonLazy();
-            Container.Bind<IInputService>().To<JoystickInputService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<JoystickInputService>().AsSingle().NonLazy();
             Container.Bind<Camera>().FromInstance(Camera.main).AsSingle().NonLazy();
 
             BindService<GameplayFactory>();

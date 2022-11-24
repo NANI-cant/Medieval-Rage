@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Gameplay.Enemy;
+using Gameplay.Fighting;
 using Gameplay.Health;
 using Gameplay.Player;
 using Gameplay.Setup;
+using Metrics;
 using UnityEngine;
 
 namespace Architecture.Services.Impl {
@@ -15,6 +17,7 @@ namespace Architecture.Services.Impl {
         private readonly IInputService _inputService;
         private readonly IInstantiateProvider _instantiateProvider;
         private readonly ITimeProvider _timeProvider;
+        private readonly IRandomService _randomService;
         private readonly Dictionary<string, Transform> _containers = new();
 
         public GameplayFactory(
@@ -22,21 +25,28 @@ namespace Architecture.Services.Impl {
             IMetricProvider metricProvider,
             IInputService inputService,
             IInstantiateProvider instantiateProvider,
-            ITimeProvider timeProvider
+            ITimeProvider timeProvider,
+            IRandomService randomService
         ) {
             _prefabProvider = prefabProvider;
             _metricProvider = metricProvider;
             _inputService = inputService;
             _instantiateProvider = instantiateProvider;
             _timeProvider = timeProvider;
+            _randomService = randomService;
         }
 
         public GameObject CreatePlayerCharacter(Vector3 position, Quaternion rotation) {
             var container = GetContainerFor(PlayerKey);
             var player = _instantiateProvider.Instantiate(_prefabProvider.PlayerCharacter, position, rotation, container);
-
+            IPlayerMetric playerMetric = _metricProvider.PlayerMetric;
+            
             player.GetComponent<PlayerInputBrain>().Construct(_inputService);
-            player.GetComponent<Mover>().Construct(_metricProvider.PlayerMetric.Speed);
+            player.GetComponent<Mover>().Construct(playerMetric.Speed);
+            player.GetComponent<Rotator>().Construct(playerMetric.AngularSpeed, _timeProvider);
+            player.GetComponent<AutoAttack>().Construct(playerMetric.CoolDown, playerMetric.AttackData, _timeProvider);
+            player.GetComponent<CharacterAnimator>().Construct(playerMetric.AttackSpeed, _randomService);
+            player.GetComponent<AttackTargetPriority>().Construct(playerMetric.AttackTargetPriority);
 
             return player;
         }
@@ -46,10 +56,11 @@ namespace Architecture.Services.Impl {
             var enemy = _instantiateProvider.Instantiate(_prefabProvider.Enemy(enemyId), position, rotation, container);
             var enemyMetric = _metricProvider.EnemyMetric;
             
-            enemy.GetComponent<Aggro>().Construct(enemyMetric.AggroDuration);
+            enemy.GetComponent<Aggro>().Construct(enemyMetric.AggroDuration, _timeProvider);
             enemy.GetComponent<AIMover>().Construct(enemyMetric.Speed);
-            enemy.GetComponent<AutoAttacker>().Construct(enemyMetric.AttackCooldown, enemyMetric.AttackData, _timeProvider);
+            enemy.GetComponent<AutoAttack>().Construct(enemyMetric.AttackCooldown, enemyMetric.AttackData, _timeProvider);
             enemy.GetComponent<Health>().Construct(enemyMetric.MaxHealth);
+            enemy.GetComponent<AttackTargetPriority>().Construct(enemyMetric.AttackTargetPriority);
             
             return enemy;
         }

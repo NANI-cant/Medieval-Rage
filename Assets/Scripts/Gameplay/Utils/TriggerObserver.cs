@@ -6,7 +6,7 @@ namespace Gameplay.Utils {
     public class TriggerObserver: MonoBehaviour {
         public event Action<Collider> Enter;
         public event Action<Collider> Exit;
-    
+
         private void OnTriggerEnter(Collider other) => 
             Enter?.Invoke(other);
 

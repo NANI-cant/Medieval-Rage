@@ -6,6 +6,7 @@ namespace Metrics {
         float Speed { get; }
         float AggroDuration { get; }
         float AttackCooldown { get; }
+        int AttackTargetPriority { get; }
         AttackData AttackData { get; }
     }
 }

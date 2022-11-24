@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: PlayerMetric
   m_EditorClassIdentifier: 
   _speed: 5
+  _angularSpeed: 720
+  _attackTargetPriority: 1
+  _attackSpeed: 1.5
+  _attackData:
+    <Damage>k__BackingField: 0
