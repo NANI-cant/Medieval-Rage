@@ -15,12 +15,8 @@ namespace Gameplay.Enemy {
         private float _duration = 5f;
         private AIMover _mover;
         private Transform _aggroTarget;
-        private bool _isOn = true;
-        private bool _canBeAggro = true;
         private Timer _calmDownTimer;
         private ITimeProvider _timeProvider;
-
-        private bool HasAggroTarget => _aggroTarget != null;
 
         public void Construct(float duration, ITimeProvider timeProvider) {
             _duration = duration;
@@ -32,34 +28,29 @@ namespace Gameplay.Enemy {
         private void OnDisable() => _trigger.Enter -= OnTriggerEnter;
 
         private void Update() {
-            if(!_canBeAggro) return;
             _calmDownTimer?.Tick(_timeProvider.DeltaTime);
             
             if(_aggroTarget == null) return;
-            if(!_isOn) return;
             _mover.MoveTo(_aggroTarget.position);
         }
 
-        public void CanBeAggro() {
-            _canBeAggro = true;
-            if(_aggroTarget == null) return;
-            
-            Aggrieved?.Invoke();
+        public void TurnOn() {
+            enabled = true;
+            _trigger.Activate();
         }
-        
-        public void TurnOn() => _isOn = true;
 
         public void TurnOff() {
-            _mover.Stop();
-            _isOn = false;  
+            enabled = false;
+            _trigger.Deactivate();
         }
 
         private void OnTriggerEnter(Collider other) {
-            if(HasAggroTarget) return;
+            if (_aggroTarget != null) return;
             if (!other.TryGetComponent<Character>(out var character)) return;
             
             _aggroTarget = character.transform;
-            if(_canBeAggro) Aggrieved?.Invoke();
+            
+            Aggrieved?.Invoke();
             _calmDownTimer = new Timer(_duration, () => {
                 _aggroTarget = null;
                 CalmedDown?.Invoke();

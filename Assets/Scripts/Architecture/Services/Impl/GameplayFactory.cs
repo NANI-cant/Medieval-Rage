@@ -61,6 +61,7 @@ namespace Architecture.Services.Impl {
             enemy.GetComponent<AutoAttack>().Construct(enemyMetric.AttackCooldown, enemyMetric.AttackData, _timeProvider);
             enemy.GetComponent<Health>().Construct(enemyMetric.MaxHealth);
             enemy.GetComponent<AttackTargetPriority>().Construct(enemyMetric.AttackTargetPriority);
+            enemy.GetComponent<EnemyAnimator>().Construct(enemyMetric.AttackSpeed, _randomService);
             
             return enemy;
         }

@@ -16,6 +16,7 @@ namespace Metrics.Impl {
         public float AggroDuration => _aggroDuration;
         public float AttackCooldown => 1 / _attackSpeed;
         public int AttackTargetPriority => _attackTargetPriority;
+        public float AttackSpeed => _attackSpeed;
         public AttackData AttackData => _attackData;
     }
 }

@@ -7,7 +7,7 @@ namespace Gameplay.Player {
         private const string AttackSpeedParameter = "AttackSpeed";
         private const string InterruptTrigger = "Interrupt";
 
-        private readonly string[] AttackStates = new[] {
+        protected string[] AttackStates = new[] {
             "Attack1",
             "Attack2",
             "Attack3"
@@ -27,7 +27,7 @@ namespace Gameplay.Player {
             set => _animator.SetFloat(AttackSpeedParameter, value);
         }
         
-        public void Construct(float attackSpeed, IRandomService randomService) {
+        public virtual void Construct(float attackSpeed, IRandomService randomService) {
             AttackSpeed = attackSpeed;
             _randomService = randomService;
         }

@@ -8,17 +8,19 @@ namespace Gameplay.Enemy.StateMachine {
         private readonly AutoAttack _autoAttack;
         private readonly AIMover _mover;
         private readonly Aggro _aggro;
+        private readonly EnemyAnimator _animator;
 
-        public AggroState(
-            EnemyStateMachine stateMachine,
+        public AggroState(EnemyStateMachine stateMachine,
             AutoAttack autoAttack,
             AIMover mover,
-            Aggro aggro
+            Aggro aggro, 
+            EnemyAnimator animator
             ) {
             _stateMachine = stateMachine;
             _autoAttack = autoAttack;
             _mover = mover;
             _aggro = aggro;
+            _animator = animator;
         }
 
         public override void Enter() {
@@ -26,6 +28,7 @@ namespace Gameplay.Enemy.StateMachine {
             _autoAttack.TargetCaptured += Fight;
             _autoAttack.TargetLost += Approach;
             _aggro.CalmedDown += CalmDown;
+            _autoAttack.Swung += _animator.PlayAttack;
 
             if (_autoAttack.Target != null) {
                 Fight();
@@ -37,7 +40,8 @@ namespace Gameplay.Enemy.StateMachine {
 
         public override void Exit() {
             _autoAttack.TurnOff();
-            //_aggro.TurnOff();
+            _aggro.TurnOff();
+            _animator.Interrupt();
 
             _autoAttack.TargetCaptured -= Fight;
             _autoAttack.TargetLost -= Approach;
@@ -49,11 +53,15 @@ namespace Gameplay.Enemy.StateMachine {
         }
 
         private void Fight() {
+            Debug.Log("Fight");
+            _mover.Stop();
             _aggro.TurnOff();
             _autoAttack.TurnOn();
         }
 
         private void Approach() {
+            Debug.Log("Approach");
+            _animator.Interrupt();
             _autoAttack.TurnOff();
             _aggro.TurnOn();
         }

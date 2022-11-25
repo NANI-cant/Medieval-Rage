@@ -2,14 +2,10 @@
 using Architecture.Services;
 using Gameplay.Utils;
 using UnityEngine;
-
+// TODO добавить очередь в TriggerEnter, переделать на подобии Aggro
 namespace Gameplay.Fighting {
     public class AutoAttack: MonoBehaviour {
         [SerializeField] private TriggerObserver _trigger;
-
-        public event Action Swung;
-        public event Action TargetCaptured;
-        public event Action TargetLost;
 
         private float _coolDown;
         private AttackData _attackData;
@@ -19,6 +15,10 @@ namespace Gameplay.Fighting {
         private bool _isReady = true;
         private bool _isOn = true;
 
+        public event Action Swung;
+        public event Action TargetCaptured;
+        public event Action TargetLost;
+        
         public AttackTarget Target => _target;
 
         public void Construct(float coolDown, AttackData attackData, ITimeProvider timeProvider) {
@@ -43,17 +43,17 @@ namespace Gameplay.Fighting {
             _trigger.Enter -= OnTriggerEnter;
             _trigger.Exit -= OnTriggerExit;
         }
-        
-        public void Attack(IDamageable damageable){
+
+        public void Interrupt() {
+            
+        }
+
+        private void Attack(IDamageable damageable){
             damageable.TakeHit(_attackData);
 
             _isReady = false;
             _cooldownTimer = new Timer(_coolDown, () => _isReady = true);
             Swung?.Invoke();
-        }
-
-        public void Interrupt() {
-            
         }
 
         public void TurnOn() => _isOn = true;

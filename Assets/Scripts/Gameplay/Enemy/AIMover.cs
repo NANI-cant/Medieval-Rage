@@ -9,6 +9,8 @@ namespace Gameplay.Enemy {
         
         private NavMeshAgent _agent;
         private Vector3 _startPosition;
+        public float MaxSpeed => _agent.speed;
+        public float DesiredSpeed => _agent.desiredVelocity.magnitude;
 
         public void Construct(float speed) {
             _agent.speed = speed;

@@ -22,10 +22,10 @@ namespace Gameplay.Enemy.StateMachine {
             _aggro = aggro;
         }
 
-        
         public override void Enter() {
             Debug.Log("Calm State");
             _autoAttack.TurnOff();
+            _aggro.TurnOff();
             _mover.ReturnToSpawn();
             
             _mover.ReturnedToSpawn += OnReturnedToSpawn;
@@ -42,7 +42,7 @@ namespace Gameplay.Enemy.StateMachine {
         }
 
         private void OnReturnedToSpawn() {
-            _aggro.CanBeAggro();
+            _aggro.TurnOn();
         }
     }
 }
