@@ -31,6 +31,10 @@ namespace Gameplay.Player {
             AttackSpeed = attackSpeed;
             _randomService = randomService;
         }
+        
+        public virtual void ResetToDefault(float attackSpeed) {
+            AttackSpeed = attackSpeed;
+        }
 
         public void PlayAttack() {
             int randomIndex = _randomService.Range(0, AttackStates.Length);

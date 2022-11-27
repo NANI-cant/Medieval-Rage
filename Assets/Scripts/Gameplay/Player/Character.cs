@@ -26,10 +26,6 @@ namespace Gameplay.Player {
             _stateMachine = new CharacterStateMachine(_animator, _autoAttack, _mover, _rotator);
         }
 
-        private void Update() {
-            _stateMachine.Update();
-        }
-
         public void Move(Vector3 direction) {
             _animator.Speed = direction.magnitude;
 

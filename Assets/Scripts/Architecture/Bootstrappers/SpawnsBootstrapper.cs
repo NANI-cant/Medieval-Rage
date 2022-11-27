@@ -5,21 +5,22 @@ using Zenject;
 
 namespace Architecture.Bootstrappers {
     public class SpawnsBootstrapper : MonoInstaller {
-        [SerializeField] private PlayerSpawnPoint _playerSpawnPoint;
-
         public override void InstallBindings() {
-            Container.Bind<IPlayerSpawnPoint>().FromInstance(_playerSpawnPoint).AsSingle().NonLazy();
+            foreach (var playerSpawner in CollectPlayerSpawners()) {
+                Container.Bind<IPlayerSpawner>().FromInstance(playerSpawner).NonLazy();
+            }
             
-            foreach (var enemySpawnPoint in CollectEnemySpawnPoints()) {
-                Container.Bind<IEnemySpawnPoint>().FromInstance(enemySpawnPoint).NonLazy();
+            foreach (var enemySpawner in CollectEnemySpawnPoints()) {
+                Container.Bind<IEnemySpawner>().FromInstance(enemySpawner).NonLazy();
             }
 
-            foreach (var traderSpawnPoint in CollectTraderSpawnPoints()) {
-                Container.Bind<ITraderSpawnPoint>().FromInstance(traderSpawnPoint).NonLazy();
+            foreach (var traderSpawner in CollectTraderSpawnPoints()) {
+                Container.Bind<ITraderSpawner>().FromInstance(traderSpawner).NonLazy();
             }
         }
 
-        private IEnemySpawnPoint[] CollectEnemySpawnPoints() => FindObjectsOfType<EnemySpawnPoint>();
-        private ITraderSpawnPoint[] CollectTraderSpawnPoints() => FindObjectsOfType<TraderSpawnPoint>();
+        private IPlayerSpawner[] CollectPlayerSpawners() => FindObjectsOfType<PlayerSpawner>();
+        private IEnemySpawner[] CollectEnemySpawnPoints() => FindObjectsOfType<EnemySpawner>();
+        private ITraderSpawner[] CollectTraderSpawnPoints() => FindObjectsOfType<TraderSpawner>();
     }    
 }

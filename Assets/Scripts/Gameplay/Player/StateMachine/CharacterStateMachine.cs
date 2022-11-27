@@ -17,9 +17,5 @@ namespace Gameplay.Player.StateMachine {
             
             TranslateTo<IdleState>();
         }
-
-        public void Update() {
-            if(ActiveState is IUpdatableState updatableState) updatableState.Update();
-        }
     }
 }

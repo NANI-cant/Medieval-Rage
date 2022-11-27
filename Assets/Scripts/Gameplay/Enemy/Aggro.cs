@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Gameplay.Enemy {
     [RequireComponent(typeof(AIMover))]
     public class Aggro: MonoBehaviour {
-        [SerializeField] private TriggerObserver _trigger;
+        [SerializeField] private SphereTriggerObserver _trigger;
 
         public event Action CalmedDown;
         public event Action Aggrieved;
@@ -18,14 +18,15 @@ namespace Gameplay.Enemy {
         private Timer _calmDownTimer;
         private ITimeProvider _timeProvider;
 
-        public void Construct(float duration, ITimeProvider timeProvider) {
+        public void Construct(float duration, float radius, ITimeProvider timeProvider) {
             _duration = duration;
             _timeProvider = timeProvider;
+            _trigger.Radius = radius;
         } 
 
         private void Awake() => _mover = GetComponent<AIMover>();
-        private void OnEnable() => _trigger.Enter += OnTriggerEnter;
-        private void OnDisable() => _trigger.Enter -= OnTriggerEnter;
+        private void OnEnable() => _trigger.Enter += ReactTriggerEnter;
+        private void OnDisable() => _trigger.Enter -= ReactTriggerEnter;
 
         private void Update() {
             _calmDownTimer?.Tick(_timeProvider.DeltaTime);
@@ -44,7 +45,7 @@ namespace Gameplay.Enemy {
             _trigger.Deactivate();
         }
 
-        private void OnTriggerEnter(Collider other) {
+        private void ReactTriggerEnter(Collider other) {
             if (_aggroTarget != null) return;
             if (!other.TryGetComponent<Character>(out var character)) return;
             

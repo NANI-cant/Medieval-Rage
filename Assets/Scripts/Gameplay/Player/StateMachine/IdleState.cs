@@ -2,7 +2,7 @@
 using Gameplay.Fighting;
 
 namespace Gameplay.Player.StateMachine {
-    public class IdleState : State, IUpdatableState {
+    public class IdleState : State {
         private readonly CharacterStateMachine _stateMachine;
         private readonly CharacterAnimator _animator;
         private readonly AutoAttack _autoAttack;
@@ -33,13 +33,6 @@ namespace Gameplay.Player.StateMachine {
         public override void Exit() {
             _autoAttack.Swung -= OnSwung;
             _mover.Started += OnStarted;
-        }
-
-        public void Update() {
-            var attackTarget = _autoAttack.Target;
-            if(attackTarget == null) return;
-            
-            _rotator.RotateTo(attackTarget.Transform.position);
         }
 
         private void OnStarted() {

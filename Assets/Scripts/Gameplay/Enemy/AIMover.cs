@@ -27,7 +27,7 @@ namespace Gameplay.Enemy {
 
         public void ReturnToSpawn() {
             MoveTo(_startPosition);
-            this.Invoke(() => ReturnedToSpawn?.Invoke(), _agent.remainingDistance / _agent.speed);
+            this.Invoke(() => ReturnedToSpawn?.Invoke(), _agent.remainingDistance * 3f/ _agent.speed);
         }
 
         public void Stop() {

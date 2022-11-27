@@ -7,6 +7,8 @@ namespace Metrics {
         float AttackSpeed { get;}
         float AngularSpeed { get;}
         int AttackTargetPriority { get;}
+        float AttackRadius { get; }
+        float MaxHealth { get; }
         AttackData AttackData { get;}
     }
 }

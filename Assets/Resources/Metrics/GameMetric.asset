@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455a34290b825a84ba8511fa9afb290a, type: 3}
-  m_Name: PlayerMetric
+  m_Script: {fileID: 11500000, guid: c246263c1a8f46eb9c6117dda447b035, type: 3}
+  m_Name: GameMetric
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _attackTargetPriority: 1
-  _speed: 5
-  _angularSpeed: 720
-  _attackSpeed: 1.5
-  _attackRadius: 2
-  _attackData:
-    <Damage>k__BackingField: 10
+  _seed: 2

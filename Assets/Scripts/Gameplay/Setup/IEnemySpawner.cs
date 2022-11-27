@@ -1,5 +1,5 @@
 ﻿namespace Gameplay.Setup {
-    public interface IEnemySpawnPoint: ISpawnPoint {
+    public interface IEnemySpawner: ISpawnPoint {
         EnemyPack[] Packs { get; }
     }
 }

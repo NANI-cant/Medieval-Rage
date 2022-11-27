@@ -1,6 +1,5 @@
 ﻿using Architecture.StateMachine.States;
 using Gameplay.Fighting;
-using UnityEngine;
 
 namespace Gameplay.Enemy.StateMachine {
     public class AggroState : State {
@@ -24,7 +23,6 @@ namespace Gameplay.Enemy.StateMachine {
         }
 
         public override void Enter() {
-            Debug.Log("Aggro State");
             _autoAttack.TargetCaptured += Fight;
             _autoAttack.TargetLost += Approach;
             _aggro.CalmedDown += CalmDown;
@@ -46,6 +44,7 @@ namespace Gameplay.Enemy.StateMachine {
             _autoAttack.TargetCaptured -= Fight;
             _autoAttack.TargetLost -= Approach;
             _aggro.CalmedDown -= CalmDown;
+            _autoAttack.Swung -= _animator.PlayAttack;
         }
 
         private void CalmDown() {
@@ -53,14 +52,12 @@ namespace Gameplay.Enemy.StateMachine {
         }
 
         private void Fight() {
-            Debug.Log("Fight");
             _mover.Stop();
             _aggro.TurnOff();
             _autoAttack.TurnOn();
         }
 
         private void Approach() {
-            Debug.Log("Approach");
             _animator.Interrupt();
             _autoAttack.TurnOff();
             _aggro.TurnOn();

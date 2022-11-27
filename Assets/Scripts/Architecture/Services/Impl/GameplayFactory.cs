@@ -4,7 +4,7 @@ using Gameplay.Fighting;
 using Gameplay.Health;
 using Gameplay.Player;
 using Gameplay.Setup;
-using Metrics;
+using Gameplay.UI;
 using UnityEngine;
 
 namespace Architecture.Services.Impl {
@@ -39,14 +39,15 @@ namespace Architecture.Services.Impl {
         public GameObject CreatePlayerCharacter(Vector3 position, Quaternion rotation) {
             var container = GetContainerFor(PlayerKey);
             var player = _instantiateProvider.Instantiate(_prefabProvider.PlayerCharacter, position, rotation, container);
-            IPlayerMetric playerMetric = _metricProvider.PlayerMetric;
+            var playerMetric = _metricProvider.PlayerMetric;
             
             player.GetComponent<PlayerInputBrain>().Construct(_inputService);
             player.GetComponent<Mover>().Construct(playerMetric.Speed);
             player.GetComponent<Rotator>().Construct(playerMetric.AngularSpeed, _timeProvider);
-            player.GetComponent<AutoAttack>().Construct(playerMetric.CoolDown, playerMetric.AttackData, _timeProvider);
+            player.GetComponent<AutoAttack>().Construct(playerMetric.CoolDown, playerMetric.AttackRadius, playerMetric.AttackData, _timeProvider);
             player.GetComponent<CharacterAnimator>().Construct(playerMetric.AttackSpeed, _randomService);
             player.GetComponent<AttackTargetPriority>().Construct(playerMetric.AttackTargetPriority);
+            player.GetComponent<Health>().Construct(playerMetric.MaxHealth);
 
             return player;
         }
@@ -56,12 +57,13 @@ namespace Architecture.Services.Impl {
             var enemy = _instantiateProvider.Instantiate(_prefabProvider.Enemy(enemyId), position, rotation, container);
             var enemyMetric = _metricProvider.EnemyMetric;
             
-            enemy.GetComponent<Aggro>().Construct(enemyMetric.AggroDuration, _timeProvider);
+            enemy.GetComponent<Aggro>().Construct(enemyMetric.AggroDuration, enemyMetric.AggroRadius, _timeProvider);
             enemy.GetComponent<AIMover>().Construct(enemyMetric.Speed);
-            enemy.GetComponent<AutoAttack>().Construct(enemyMetric.AttackCooldown, enemyMetric.AttackData, _timeProvider);
+            enemy.GetComponent<AutoAttack>().Construct(enemyMetric.AttackCooldown, enemyMetric.AttackRadius, enemyMetric.AttackData, _timeProvider);
             enemy.GetComponent<Health>().Construct(enemyMetric.MaxHealth);
             enemy.GetComponent<AttackTargetPriority>().Construct(enemyMetric.AttackTargetPriority);
             enemy.GetComponent<EnemyAnimator>().Construct(enemyMetric.AttackSpeed, _randomService);
+            enemy.GetComponent<Rotator>().Construct(enemyMetric.AngularSpeed, _timeProvider);
             
             return enemy;
         }

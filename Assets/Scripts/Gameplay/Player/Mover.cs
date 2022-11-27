@@ -16,6 +16,10 @@ namespace Gameplay.Player {
             _maxSpeed = maxSpeed;
         }
 
+        public void ResetToDefault(float maxSpeed) {
+            _maxSpeed = maxSpeed;
+        }
+
         private void Awake() {
             _controller = GetComponent<CharacterController>();
         }

@@ -7,5 +7,9 @@ namespace Gameplay.Fighting {
         public void Construct(int priority) {
             Priority = priority;
         }
+        
+        public void ResetToDefault(int priority) {
+            Priority = priority;
+        }
     }
 }

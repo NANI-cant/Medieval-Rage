@@ -14,8 +14,7 @@ namespace Gameplay.Enemy.StateMachine {
             AutoAttack autoAttack,
             AIMover mover,
             Aggro aggro
-
-            ) {
+        ) {
             _stateMachine = stateMachine;
             _autoAttack = autoAttack;
             _mover = mover;
@@ -23,25 +22,24 @@ namespace Gameplay.Enemy.StateMachine {
         }
 
         public override void Enter() {
-            Debug.Log("Calm State");
             _autoAttack.TurnOff();
             _aggro.TurnOff();
             _mover.ReturnToSpawn();
             
-            _mover.ReturnedToSpawn += OnReturnedToSpawn;
-            _aggro.Aggrieved += OnAggrieved;
+            _mover.ReturnedToSpawn += TurnOnAggro;
+            _aggro.Aggrieved += GetAggressive;
         }
 
         public override void Exit() {
-            _mover.ReturnedToSpawn -= OnReturnedToSpawn;
-            _aggro.Aggrieved -= OnAggrieved;
+            _mover.ReturnedToSpawn -= TurnOnAggro;
+            _aggro.Aggrieved -= GetAggressive;
         }
 
-        private void OnAggrieved() {
+        private void GetAggressive() {
             _stateMachine.TranslateTo<AggroState>();
         }
 
-        private void OnReturnedToSpawn() {
+        private void TurnOnAggro() {
             _aggro.TurnOn();
         }
     }

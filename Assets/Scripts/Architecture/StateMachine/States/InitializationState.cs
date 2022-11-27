@@ -8,24 +8,27 @@ namespace Architecture.StateMachine.States {
         private readonly GameStateMachine _gameStateMachine;
         private readonly IGameplayFactory _gameplayFactory;
         private readonly IRandomService _randomService;
-        private readonly IPlayerSpawnPoint _playerSpawnPoint;
-        private readonly IEnemySpawnPoint[] _enemySpawnPoints;
-        private readonly ITraderSpawnPoint[] _traderSpawnPoints;
+        private readonly IResetUnitService _resetUnitService;
+        private readonly IPlayerSpawner[] _playerSpawners;
+        private readonly IEnemySpawner[] _enemySpawnPoints;
+        private readonly ITraderSpawner[] _traderSpawnPoints;
         private readonly Camera _camera;
 
         public InitializationState(
             GameStateMachine gameStateMachine,
             IGameplayFactory gameplayFactory,
             IRandomService randomService,
-            IPlayerSpawnPoint playerSpawnPoint,
-            IEnemySpawnPoint[] enemySpawnPoints,
-            ITraderSpawnPoint[] traderSpawnPoints,
+            IResetUnitService resetUnitService,
+            IPlayerSpawner[] playerSpawners,
+            IEnemySpawner[] enemySpawnPoints,
+            ITraderSpawner[] traderSpawnPoints,
             Camera camera
         ) {
             _gameStateMachine = gameStateMachine;
             _gameplayFactory = gameplayFactory;
             _randomService = randomService;
-            _playerSpawnPoint = playerSpawnPoint;
+            _resetUnitService = resetUnitService;
+            _playerSpawners = playerSpawners;
             _enemySpawnPoints = enemySpawnPoints;
             _traderSpawnPoints = traderSpawnPoints;
             _camera = camera;
@@ -34,14 +37,18 @@ namespace Architecture.StateMachine.States {
         public override void Enter() {
             var player = SpawnPlayer();
             SpawnEnemies();
-
             SetupCamera(player);
             
             _gameStateMachine.TranslateTo<GameLoopState>();
         }
 
-        private GameObject SpawnPlayer() 
-            => _gameplayFactory.CreatePlayerCharacter(_playerSpawnPoint.Position, _playerSpawnPoint.Rotation);
+        private GameObject SpawnPlayer() {
+            var randomIndex = _randomService.Range(0, _playerSpawners.Length);
+            var pickedSpawner = _playerSpawners[randomIndex];
+            var player = _gameplayFactory.CreatePlayerCharacter(pickedSpawner.Position, pickedSpawner.Rotation);
+            pickedSpawner.TrackPlayer(player, _resetUnitService);
+            return player;
+        }
 
         private void SetupCamera(GameObject player) {
             if (_camera.TryGetComponent<Following>(out var following)) {
