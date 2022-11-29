@@ -11,7 +11,7 @@ namespace Architecture.Bootstrappers {
 		public override void InstallBindings()
 		{
 			Container.Bind<int>().FromInstance(_metric.Seed).WhenInjectedInto<RandomService>();
-			BindService<RandomService>();
+			BindService<UnitySceneLoadService>();
 			BindService<ResourcesMetricProvider>();
 			BindService<ResourcesPrefabProvider>();
 			BindService<ResourcesUIProvider>();
