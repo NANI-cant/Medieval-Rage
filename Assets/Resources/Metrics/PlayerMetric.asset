@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455a34290b825a84ba8511fa9afb290a, type: 3}
   m_Name: PlayerMetric
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _maxHealth: 300
   _attackTargetPriority: 1
   _speed: 5
   _angularSpeed: 720

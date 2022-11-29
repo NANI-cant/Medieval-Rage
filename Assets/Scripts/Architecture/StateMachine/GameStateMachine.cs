@@ -11,13 +11,14 @@ namespace Architecture.StateMachine {
             Camera camera,
             IPlayerSpawner[] playerSpawners,
             ITraderSpawner[] traderSpawnPoints,
-            IEnemySpawner[] enemySpawnPoints,
             IRandomService randomService,
-            IResetUnitService resetUnitService) 
+            IGameClock gameClock,
+            ISpawnEnemiesService spawnEnemiesService, 
+            IUIFactory uiFactory) 
         {
             States = new Dictionary<Type, State> {
-                [typeof(InitializationState)] = new InitializationState(this, gameplayFactory, randomService, resetUnitService, playerSpawners, enemySpawnPoints, traderSpawnPoints, camera),
-                [typeof(GameLoopState)] = new GameLoopState(this),
+                [typeof(InitializationState)] = new InitializationState(this, gameplayFactory, uiFactory, randomService, gameClock, playerSpawners, traderSpawnPoints, camera),
+                [typeof(GameLoopState)] = new GameLoopState(this, spawnEnemiesService, gameClock),
             };
 
             TranslateTo<InitializationState>();

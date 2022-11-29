@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Architecture.Services.Impl {
     public class ResourcesUIProvider : IUIProvider {
-        private const string JoystickPath = "UI/Joystick";
+        private const string HUDPath = "UI/HUD";
 
-        public GameObject Joystick => Resources.Load<GameObject>(JoystickPath);
+        public GameObject HUD => Resources.Load<GameObject>(HUDPath);
     }
 }

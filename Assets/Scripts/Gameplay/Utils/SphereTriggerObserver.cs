@@ -14,14 +14,26 @@ namespace Gameplay.Utils {
             set => _collider.radius = value;
         }
 
-        private void OnTriggerEnter(Collider other) => Enter?.Invoke(other);
-        private void OnTriggerExit(Collider other) => Exit?.Invoke(other);
+        private void OnTriggerEnter(Collider other) {
+            if (other.TryGetComponent<DestroyObserver>(out var destroyObserver)) {
+                destroyObserver.Destroyed += OnTriggerExit;
+            }
+            Enter?.Invoke(other);   
+        }
+
+        private void OnTriggerExit(Collider other) {
+            if (other.TryGetComponent<DestroyObserver>(out var destroyObserver)) {
+                destroyObserver.Destroyed -= OnTriggerExit;
+            }
+            Exit?.Invoke(other);   
+        }
 
         public void Activate() => _collider.enabled = true;
         public void Deactivate() => _collider.enabled = false;
 
 #if UNITY_EDITOR
         private void OnValidate() {
+            if(_collider != null) return;
             _collider = GetComponent<SphereCollider>();
         }
 #endif

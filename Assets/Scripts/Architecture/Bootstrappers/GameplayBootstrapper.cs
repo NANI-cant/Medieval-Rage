@@ -1,3 +1,4 @@
+using Architecture.Services;
 using Architecture.Services.Impl;
 using Architecture.StateMachine;
 using UnityEngine;
@@ -15,7 +16,10 @@ namespace Architecture.Bootstrappers {
             Container.Bind<Camera>().FromInstance(Camera.main).AsSingle().NonLazy();
 
             BindService<GameplayFactory>();
+            BindService<UIFactory>();
             BindService<GameStateMachine>();
+            BindService<SpawnEnemiesService>();
+            BindService<GameClock>();
         }
 
         private void BindService<TService>() 

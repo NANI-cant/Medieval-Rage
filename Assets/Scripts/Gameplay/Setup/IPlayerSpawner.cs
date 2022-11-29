@@ -3,6 +3,6 @@ using UnityEngine;
 
 namespace Gameplay.Setup {
     public interface IPlayerSpawner: ISpawnPoint {
-        void TrackPlayer(GameObject player, IResetUnitService resetService);
+        void TrackPlayer(GameObject player);
     }
 }

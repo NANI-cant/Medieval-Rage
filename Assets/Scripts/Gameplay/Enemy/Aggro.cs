@@ -1,11 +1,13 @@
 ﻿using System;
 using Architecture.Services;
+using Gameplay.Fighting;
 using Gameplay.Player;
 using Gameplay.Utils;
 using UnityEngine;
 
 namespace Gameplay.Enemy {
     [RequireComponent(typeof(AIMover))]
+    [RequireComponent(typeof(Health.Health))]
     public class Aggro: MonoBehaviour {
         [SerializeField] private SphereTriggerObserver _trigger;
 
@@ -14,7 +16,8 @@ namespace Gameplay.Enemy {
 
         private float _duration = 5f;
         private AIMover _mover;
-        private Transform _aggroTarget;
+        private Health.Health _health;
+        private Health.Health _aggroTarget;
         private Timer _calmDownTimer;
         private ITimeProvider _timeProvider;
 
@@ -22,17 +25,29 @@ namespace Gameplay.Enemy {
             _duration = duration;
             _timeProvider = timeProvider;
             _trigger.Radius = radius;
-        } 
+        }
 
-        private void Awake() => _mover = GetComponent<AIMover>();
-        private void OnEnable() => _trigger.Enter += ReactTriggerEnter;
-        private void OnDisable() => _trigger.Enter -= ReactTriggerEnter;
+        private void Awake() {
+            _mover = GetComponent<AIMover>();
+            _health = GetComponent<Health.Health>();
+        }
+
+        private void OnEnable() {
+            _health.HitTaked += ReactToHit;
+            _trigger.Enter += ReactTriggerEnter;   
+        }
+
+        private void OnDisable() {
+            if(_aggroTarget != null) _aggroTarget.Died -= CalmDown;
+            _health.HitTaked -= ReactToHit;
+            _trigger.Enter -= ReactTriggerEnter;   
+        }
 
         private void Update() {
             _calmDownTimer?.Tick(_timeProvider.DeltaTime);
             
             if(_aggroTarget == null) return;
-            _mover.MoveTo(_aggroTarget.position);
+            _mover.MoveTo(_aggroTarget.transform.position);
         }
 
         public void TurnOn() {
@@ -45,17 +60,25 @@ namespace Gameplay.Enemy {
             _trigger.Deactivate();
         }
 
-        private void ReactTriggerEnter(Collider other) {
+        private void ReactTriggerEnter(Collider other) => TryAggro(other);
+        private void ReactToHit(TakeHitResult takeHitResult) => TryAggro(takeHitResult.DamageDealer);
+
+        private void TryAggro(Component potentialTarget) {
             if (_aggroTarget != null) return;
-            if (!other.TryGetComponent<Character>(out var character)) return;
-            
-            _aggroTarget = character.transform;
-            
+            if (!potentialTarget.TryGetComponent<Character>(out var character)) return;
+
+            _aggroTarget = character.GetComponent<Health.Health>();
+
+            _aggroTarget.Died += CalmDown;
+            _calmDownTimer = new Timer(_duration, CalmDown);
             Aggrieved?.Invoke();
-            _calmDownTimer = new Timer(_duration, () => {
-                _aggroTarget = null;
-                CalmedDown?.Invoke();
-            });
+        }
+
+        private void CalmDown() {
+            _calmDownTimer = null;
+            _aggroTarget.Died -= CalmDown;
+            _aggroTarget = null;
+            CalmedDown?.Invoke();
         }
     }
 }

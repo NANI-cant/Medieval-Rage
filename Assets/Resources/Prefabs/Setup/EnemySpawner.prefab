@@ -46,3 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _packs:
   - _enemies: 00000000
+  - _enemies: 01000000
+  - _enemies: 02000000
+  - _enemies: 03000000
+  - _enemies: 04000000
+  - _enemies: 05000000
+  - _enemies: 06000000

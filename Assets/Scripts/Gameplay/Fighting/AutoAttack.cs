@@ -10,9 +10,9 @@ namespace Gameplay.Fighting {
     [RequireComponent(typeof(Rotator))]
     public class AutoAttack: MonoBehaviour {
         [SerializeField] private SphereTriggerObserver _trigger;
-        [SerializeField] private List<AttackTarget> _targetsQueue = new ();
-
+        
         private float _coolDown;
+        private List<AttackTarget> _targetsQueue = new ();
         private Rotator _rotator;
         private AttackData _attackData;
         private Timer _cooldownTimer;
@@ -67,7 +67,7 @@ namespace Gameplay.Fighting {
         }
 
         private void Attack(IDamageable damageable){
-            damageable.TakeHit(_attackData);
+            damageable.TakeHit(_attackData, this);
 
             _isReady = false;
             _cooldownTimer = new Timer(_coolDown, () => _isReady = true);

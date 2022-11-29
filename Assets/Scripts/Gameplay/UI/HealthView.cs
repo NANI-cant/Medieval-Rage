@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay.Fighting;
+﻿using Gameplay.Fighting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +34,7 @@ namespace Gameplay.UI {
 
 #if UNITY_EDITOR
         private void OnValidate() {
+            if(_slider != null) return;
             _slider = GetComponentInChildren<Slider>();
         }
 #endif

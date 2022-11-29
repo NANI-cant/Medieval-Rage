@@ -1,3 +1,4 @@
+using Architecture.Services;
 using Architecture.Services.Impl;
 using Metrics;
 using UnityEngine;
@@ -16,7 +17,6 @@ namespace Architecture.Bootstrappers {
 			BindService<ResourcesUIProvider>();
 			BindService<UnityTimeProvider>();
 			BindService<UnityInstantiateProvider>();
-			BindService<ResetUnitService>();
 		}
 
         private void BindService<TService>() 

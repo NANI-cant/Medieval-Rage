@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b684c4bdf8d4cec9e6fd3d30190c7af, type: 3}
+  m_Name: SlimeMetric
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _attackTargetPriority: 2
+  _speed: 3
+  _angularSpeed: 720
+  _aggroRadius: 1.5
+  _aggroDuration: 5
+  _attackSpeed: 1
+  _attackRadius: 2
+  _attackData:
+    <Damage>k__BackingField: 10

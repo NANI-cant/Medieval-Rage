@@ -1709,6 +1709,7 @@ GameObject:
   - component: {fileID: 3482089957262779333}
   - component: {fileID: 7995541627025837853}
   - component: {fileID: 3034714778614914335}
+  - component: {fileID: -3597654229115254288}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1833,7 +1834,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trigger: {fileID: 1462972145438813576}
-  _targetsQueue: []
 --- !u!114 &7995541627025837853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,6 +1864,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &-3597654229115254288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310669198630374221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb2ffa364d14dba99eb4fea46e7b46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6507955933166504272
 GameObject:
   m_ObjectHideFlags: 0

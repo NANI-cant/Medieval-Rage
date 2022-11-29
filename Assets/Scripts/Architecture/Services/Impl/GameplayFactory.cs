@@ -55,7 +55,7 @@ namespace Architecture.Services.Impl {
         public GameObject CreateEnemy(EnemyId enemyId, Vector3 position, Quaternion rotation) {
             var container = GetContainerFor(enemyId.ToString());
             var enemy = _instantiateProvider.Instantiate(_prefabProvider.Enemy(enemyId), position, rotation, container);
-            var enemyMetric = _metricProvider.EnemyMetric;
+            var enemyMetric = _metricProvider.EnemyMetric(enemyId);
             
             enemy.GetComponent<Aggro>().Construct(enemyMetric.AggroDuration, enemyMetric.AggroRadius, _timeProvider);
             enemy.GetComponent<AIMover>().Construct(enemyMetric.Speed);

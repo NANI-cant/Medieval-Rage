@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c246263c1a8f46eb9c6117dda447b035, type: 3}
   m_Name: GameMetric
   m_EditorClassIdentifier: 
-  _seed: 2
+  _seed: 3

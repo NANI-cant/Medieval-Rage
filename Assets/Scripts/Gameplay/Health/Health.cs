@@ -20,9 +20,9 @@ namespace Gameplay.Health{
 			CurrentHealth = MaxHealth;
 		}
 
-		public void TakeHit(IReadOnlyAttackData attackData) {
+		public void TakeHit(IReadOnlyAttackData attackData, MonoBehaviour damageDealer) {
 			CurrentHealth -= attackData.Damage;
-			HitTaked?.Invoke(new TakeHitResult(MaxHealth, CurrentHealth, attackData.Damage));
+			HitTaked?.Invoke(new TakeHitResult(MaxHealth, CurrentHealth, attackData.Damage, damageDealer));
 
 			if (CurrentHealth <= 0) Died?.Invoke();
 		}
