@@ -5,6 +5,7 @@ using Gameplay.Health;
 using Gameplay.Player;
 using Gameplay.Setup;
 using Gameplay.UI;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Architecture.Services.Impl {
@@ -16,6 +17,7 @@ namespace Architecture.Services.Impl {
         private readonly IMetricProvider _metricProvider;
         private readonly IInputService _inputService;
         private readonly IInstantiateProvider _instantiateProvider;
+        private readonly INetworkInstantiateProvider _networkInstantiateProvider;
         private readonly ITimeProvider _timeProvider;
         private readonly IRandomService _randomService;
         private readonly Dictionary<string, Transform> _containers = new();
@@ -25,6 +27,7 @@ namespace Architecture.Services.Impl {
             IMetricProvider metricProvider,
             IInputService inputService,
             IInstantiateProvider instantiateProvider,
+            INetworkInstantiateProvider networkInstantiateProvider,
             ITimeProvider timeProvider,
             IRandomService randomService
         ) {
@@ -32,13 +35,14 @@ namespace Architecture.Services.Impl {
             _metricProvider = metricProvider;
             _inputService = inputService;
             _instantiateProvider = instantiateProvider;
+            _networkInstantiateProvider = networkInstantiateProvider;
             _timeProvider = timeProvider;
             _randomService = randomService;
         }
 
         public GameObject CreatePlayerCharacter(Vector3 position, Quaternion rotation) {
             var container = GetContainerFor(PlayerKey);
-            var player = _instantiateProvider.Instantiate(_prefabProvider.PlayerCharacter, position, rotation, container);
+            var player = _networkInstantiateProvider.Instantiate(_prefabProvider.PlayerPath, position, rotation, container);
             var playerMetric = _metricProvider.PlayerMetric;
             
             player.GetComponent<PlayerInputBrain>().Construct(_inputService);

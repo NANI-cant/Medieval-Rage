@@ -1,20 +1,24 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
+using Lobby;
 
 namespace UI.Lobby {
     public class LobbyView : MonoBehaviour {
-        [Header("Create")]
-        [SerializeField] private Button _createButton;
-        [SerializeField] private TMP_InputField _createInputField;
+        [Header("Quick game")] 
+        [SerializeField] private Button _quickGameButton;
         
-        [Header("Join")]
-        [SerializeField] private Button _joinButton;
-        [SerializeField] private TMP_InputField _joinInputField;
+        private LobbyModel _lobbyModel;
 
-        public Button CreateButton => _createButton;
-        public Button JoinButton => _joinButton;
-        public TMP_InputField CreateInputField => _createInputField;
-        public TMP_InputField JoinInputField => _joinInputField;
+        [Inject]
+        public void Construct(LobbyModel lobbyModel) {
+            _lobbyModel = lobbyModel;
+        }
+
+        private void OnEnable() => _quickGameButton.onClick.AddListener(FindQuickGame);
+        private void OnDisable() => _quickGameButton.onClick.RemoveListener(FindQuickGame);
+
+        private void FindQuickGame() => _lobbyModel.FindQuickGame();
     }
 }

@@ -7,6 +7,7 @@ namespace Architecture.Bootstrappers {
             BindService<NetworkStartup>();
             BindService<PhotonNetworkService>();
             BindService<ConnectionCallbacks>();
+            BindService<NetworkInstantiateProvider>();
         }
         
         private void BindService<TService>() 

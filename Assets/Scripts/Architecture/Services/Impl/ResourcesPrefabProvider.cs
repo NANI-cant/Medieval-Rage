@@ -5,10 +5,12 @@ namespace Architecture.Services.Impl {
     public class ResourcesPrefabProvider : IPrefabProvider {
         private const string RootPath = "Prefabs/Gameplay/";
         private const string EnemiesFolder = "Enemies/";
-        private const string PlayerPath = "Player";
+        private const string PlayerCharacterPath = "Player";
 
-        public GameObject PlayerCharacter => Resources.Load<GameObject>(RootPath + PlayerPath);
-        
-        public GameObject Enemy(EnemyId enemyId) => Resources.Load<GameObject>(RootPath + EnemiesFolder + enemyId);
+        public string PlayerPath => RootPath + PlayerCharacterPath;
+        public GameObject PlayerCharacter => Resources.Load<GameObject>(PlayerPath);
+
+        public string EnemyPath(EnemyId enemyId) => RootPath + EnemiesFolder + enemyId;
+        public GameObject Enemy(EnemyId enemyId) => Resources.Load<GameObject>(EnemyPath(enemyId));
     }
 }

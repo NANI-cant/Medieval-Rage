@@ -1,4 +1,5 @@
 using Architecture.Services;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Gameplay.Player {
@@ -12,6 +13,10 @@ namespace Gameplay.Player {
         }
 
         private void Awake() {
+            if (!GetComponent<PhotonView>().IsMine) {
+                Destroy(this);
+                return;
+            }
             _character = GetComponent<Character>();
         }
 

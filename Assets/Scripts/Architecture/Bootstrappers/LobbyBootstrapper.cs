@@ -7,8 +7,7 @@ namespace Architecture.Bootstrappers {
         [SerializeField] private LobbyView _lobbyView;
         
         public override void InstallBindings() {
-            Container.Bind<LobbyView>().FromInstance(_lobbyView).AsSingle().NonLazy();
-            BindService<Lobby.Lobby>();
+            BindService<Lobby.LobbyModel>();
         }
         
         private void BindService<TService>() 
