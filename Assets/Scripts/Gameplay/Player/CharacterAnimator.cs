@@ -1,4 +1,5 @@
 ﻿using Architecture.Services;
+using Architecture.Services.General;
 using UnityEngine;
 
 namespace Gameplay.Player {
@@ -7,15 +8,15 @@ namespace Gameplay.Player {
         private const string AttackSpeedParameter = "AttackSpeed";
         private const string InterruptTrigger = "Interrupt";
 
+        [SerializeField] private Animator _animator;
+
+        private IRandomService _randomService;
+
         protected string[] AttackStates = new[] {
             "Attack1",
             "Attack2",
             "Attack3"
         };
-
-        [SerializeField] private Animator _animator;
-        
-        private IRandomService _randomService;
 
         public float Speed {
             get => _animator.GetFloat(SpeedParameter);

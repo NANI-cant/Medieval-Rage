@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Architecture.Services;
+using Architecture.Services.General;
+using Architecture.Services.Network;
 using Photon.Realtime;
 
 namespace Lobby {

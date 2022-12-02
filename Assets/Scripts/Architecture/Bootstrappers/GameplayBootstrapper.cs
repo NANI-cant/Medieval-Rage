@@ -1,4 +1,6 @@
+using Architecture.Services.General.Impl;
 using Architecture.Services.Impl;
+using Architecture.Services.Teaming.Impl;
 using Architecture.StateMachine;
 using UnityEngine;
 using Zenject;
@@ -20,6 +22,7 @@ namespace Architecture.Bootstrappers {
             BindService<GameStateMachine>();
             BindService<SpawnEnemiesService>();
             BindService<GameClock>();
+            BindService<TeamProvider>();
         }
 
         private void BindService<TService>() 

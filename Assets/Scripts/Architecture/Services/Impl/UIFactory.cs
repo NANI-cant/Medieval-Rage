@@ -1,4 +1,5 @@
-﻿using UI.HUD;
+﻿using Architecture.Services.General;
+using UI.HUD;
 using UnityEngine;
 
 namespace Architecture.Services.Impl {

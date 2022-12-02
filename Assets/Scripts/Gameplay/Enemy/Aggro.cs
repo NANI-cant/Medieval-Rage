@@ -1,7 +1,9 @@
 ﻿using System;
 using Architecture.Services;
+using Architecture.Services.General;
 using Gameplay.Fighting;
 using Gameplay.Player;
+using Gameplay.Teaming;
 using Gameplay.Utils;
 using UnityEngine;
 
@@ -20,6 +22,7 @@ namespace Gameplay.Enemy {
         private Health.Health _aggroTarget;
         private Timer _calmDownTimer;
         private ITimeProvider _timeProvider;
+        private Team _team;
 
         public void Construct(float duration, float radius, ITimeProvider timeProvider) {
             _duration = duration;
@@ -30,6 +33,7 @@ namespace Gameplay.Enemy {
         private void Awake() {
             _mover = GetComponent<AIMover>();
             _health = GetComponent<Health.Health>();
+            _team = GetComponent<Team>();
         }
 
         private void OnEnable() {
@@ -65,9 +69,10 @@ namespace Gameplay.Enemy {
 
         private void TryAggro(Component potentialTarget) {
             if (_aggroTarget != null) return;
-            if (!potentialTarget.TryGetComponent<Character>(out var character)) return;
+            if (!potentialTarget.TryGetComponent<Health.Health>(out var health)) return;
+            if (potentialTarget.TryGetComponent<Team>(out var targetTeam) && _team.Id == targetTeam.Id) return;
 
-            _aggroTarget = character.GetComponent<Health.Health>();
+            _aggroTarget = health;
 
             _aggroTarget.Died += CalmDown;
             _calmDownTimer = new Timer(_duration, CalmDown);
