@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Architecture.Services.Gameplay;
 using Architecture.Services.General;
 using Architecture.Services.Teaming;
@@ -28,6 +29,9 @@ namespace Architecture.Services.Factories.Impl {
         private readonly ITimeProvider _timeProvider;
         private readonly IRandomService _randomService;
         private readonly Dictionary<string, Transform> _containers = new();
+        
+        public event Action<GameObject> PlayerCreated;
+        public event Action<GameObject, EnemyId> EnemyCreated;
 
         public GameplayFactory(
             IPrefabProvider prefabProvider,
@@ -52,8 +56,6 @@ namespace Architecture.Services.Factories.Impl {
         public GameObject CreatePlayerCharacter(Vector3 position, Quaternion rotation) {
             var container = GetContainerFor(PlayerKey);
             var player = _instantiateProvider.Instantiate(_prefabProvider.Player, position, rotation, container);
-            
-            SendPlayerOverNetwork(player);
             var playerMetric = _metricProvider.PlayerMetric;
             
             player.GetComponent<PlayerInputBrain>().Construct(_inputService);
@@ -64,6 +66,8 @@ namespace Architecture.Services.Factories.Impl {
             player.GetComponent<AttackTargetPriority>().Construct(playerMetric.AttackTargetPriority);
             player.GetComponent<Health>().Construct(playerMetric.MaxHealth);
             player.GetComponent<Team>().Construct(_teamProvider.NextPlayerTeamId);
+            
+            PlayerCreated?.Invoke(player);
 
             return player;
         }
@@ -81,34 +85,10 @@ namespace Architecture.Services.Factories.Impl {
             enemy.GetComponent<EnemyAnimator>().Construct(enemyMetric.AttackSpeed, _randomService);
             enemy.GetComponent<Rotator>().Construct(enemyMetric.AngularSpeed, _timeProvider);
             enemy.GetComponent<Team>().Construct(_teamProvider.EnemyTeamId);
+
+            EnemyCreated?.Invoke(enemy, enemyId);
             
             return enemy;
-        }
-
-        private void SendPlayerOverNetwork(GameObject player) {
-            var photonView = player.GetComponent<PhotonView>();
-            if (PhotonNetwork.AllocateViewID(photonView)) {
-                object[] data = new object[] {
-                    player.transform.position,
-                    player.transform.rotation,
-                    photonView.ViewID
-                };
-
-                RaiseEventOptions raiseEventOptions = new RaiseEventOptions() {
-                    Receivers = ReceiverGroup.Others,
-                    CachingOption = EventCaching.AddToRoomCache
-                };
-
-                SendOptions sendOptions = new SendOptions() {
-                    Reliability = true
-                };
-
-                PhotonNetwork.RaiseEvent(NetworkCode.InstantiatePlayer, data, raiseEventOptions, sendOptions);
-            }
-            else {
-                Debug.LogError("Failed to allocate a ViewId.");
-                _destroyProvider.Destroy(player);
-            }
         }
 
         private Transform GetContainerFor(string key) {

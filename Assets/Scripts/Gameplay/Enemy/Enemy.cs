@@ -1,5 +1,8 @@
 ﻿using Gameplay.Enemy.StateMachine;
 using Gameplay.Fighting;
+using Gameplay.Player;
+using Gameplay.Teaming;
+using Gameplay.Utils;
 using UnityEngine;
 
 namespace Gameplay.Enemy {
@@ -9,6 +12,9 @@ namespace Gameplay.Enemy {
     [RequireComponent(typeof(Health.Health))]
     [RequireComponent(typeof(AutoAttack))]
     [RequireComponent(typeof(EnemyAnimator))]
+    [RequireComponent(typeof(Team))]
+    [RequireComponent(typeof(DestroyObserver))]
+    [RequireComponent(typeof(Rotator))]
     public class Enemy : MonoBehaviour {
         private EnemyStateMachine _stateMachine;
         private Aggro _aggro;

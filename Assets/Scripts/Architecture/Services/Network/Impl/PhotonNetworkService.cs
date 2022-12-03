@@ -22,5 +22,6 @@ namespace Architecture.Services.Network.Impl {
         public bool JoinRandom() => PhotonNetwork.JoinRandomRoom();
         public bool CreateRoom() => PhotonNetwork.CreateRoom(null, new RoomOptions() {MaxPlayers = 4});
         public bool RaiseEvent(byte code, object[] data, RaiseEventOptions raiseEventOptions, SendOptions sendOptions) => PhotonNetwork.RaiseEvent(code, data, raiseEventOptions, sendOptions);
+        public bool AllocateViewID(PhotonView view) => PhotonNetwork.AllocateViewID(view);
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Network.Gameplay {
-    public class AnimatorNetwork: MonoBehaviour, IPunObservable{
+    public class AnimatorSync: MonoBehaviour, IPunObservable{
         private Animator _animator;
 
         private void Awake() {

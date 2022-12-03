@@ -9,23 +9,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2095753625212820356}
-  - component: {fileID: 4584889124154024642}
   - component: {fileID: 4963346711549526017}
-  - component: {fileID: 5661998235593369217}
-  - component: {fileID: 5952490509426541959}
-  - component: {fileID: 8706848277151090799}
-  - component: {fileID: 3838364458199866916}
-  - component: {fileID: 4580462321898791975}
-  - component: {fileID: 8405993231302222948}
   - component: {fileID: 2325707927995667953}
-  - component: {fileID: 7515592704363883841}
-  - component: {fileID: 300420526638046909}
-  - component: {fileID: 7958381658293723696}
-  - component: {fileID: 1611172727495299071}
-  - component: {fileID: 235789830635585450}
-  - component: {fileID: 700539038857358527}
+  - component: {fileID: 2357216472995777934}
+  - component: {fileID: 2462471041518151439}
+  - component: {fileID: 530649756073489148}
+  - component: {fileID: 263293865043001156}
+  - component: {fileID: 9162510026665440472}
+  - component: {fileID: 5045622692966328256}
   m_Layer: 7
-  m_Name: Golem
+  m_Name: GolemAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,28 +43,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &4584889124154024642
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: Infinity
-  avoidancePriority: 50
-  m_AngularSpeed: 540
-  m_StoppingDistance: 0.1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!136 &4963346711549526017
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -86,80 +57,6 @@ CapsuleCollider:
   m_Height: 2.0114307
   m_Direction: 1
   m_Center: {x: 0, y: 1.0039935, z: 0}
---- !u!114 &5661998235593369217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ed7c62b30f34f3e874d0b20e11e7419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _trigger: {fileID: 1030139013388483336}
---- !u!114 &5952490509426541959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6222e6a7840467cbdb84d3202e8f07c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8706848277151090799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b59dc678f474e35b19c78cdfda65965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _trigger: {fileID: 9179048677162779007}
---- !u!114 &3838364458199866916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d788da69b5a6df45af768793bef3e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4580462321898791975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ef1d8f0ed6e48a6b94a67cf74db6917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8405993231302222948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3872f7e448c541d1afbcedd86c3ef38b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &2325707927995667953
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,7 +73,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7515592704363883841
+--- !u!114 &2357216472995777934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,11 +82,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2095753625212820357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f937890b62e442eaad008e75adbc32c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d788da69b5a6df45af768793bef3e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 4068119317552912953}
---- !u!114 &300420526638046909
+--- !u!114 &2462471041518151439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,22 +94,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2095753625212820357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e71dc8d18f474795df95e12c58ca40, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ef1d8f0ed6e48a6b94a67cf74db6917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7958381658293723696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb2ffa364d14dba99eb4fea46e7b46e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1611172727495299071
+--- !u!114 &530649756073489148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,7 +109,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908adad27954fe9bea0fb4683e99b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &235789830635585450
+--- !u!114 &263293865043001156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb2ffa364d14dba99eb4fea46e7b46e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9162510026665440472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,11 +140,13 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 700539038857358527}
+  - {fileID: 5045622692966328256}
+  - {fileID: 9024126621907695570}
+  - {fileID: 2423619296892275067}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &700539038857358527
+--- !u!114 &5045622692966328256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -428,8 +326,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4068119317552912954}
   - component: {fileID: 4068119317552912953}
-  - component: {fileID: 7027038457584561687}
-  - component: {fileID: 2342456078499011075}
+  - component: {fileID: 9024126621907695570}
+  - component: {fileID: 2423619296892275067}
   m_Layer: 0
   m_Name: Polyart_Golem
   m_TagString: Untagged
@@ -474,7 +372,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7027038457584561687
+--- !u!114 &9024126621907695570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -486,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7454597ca3834be7a4becf296a9967b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2342456078499011075
+--- !u!114 &2423619296892275067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
