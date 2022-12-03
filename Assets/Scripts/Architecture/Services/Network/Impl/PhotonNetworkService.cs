@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
 using Photon.Realtime;
 
 namespace Architecture.Services.Network.Impl {
@@ -20,5 +21,6 @@ namespace Architecture.Services.Network.Impl {
         public void LoadGameplay() => PhotonNetwork.LoadLevel(GameplayName);
         public bool JoinRandom() => PhotonNetwork.JoinRandomRoom();
         public bool CreateRoom() => PhotonNetwork.CreateRoom(null, new RoomOptions() {MaxPlayers = 4});
+        public bool RaiseEvent(byte code, object[] data, RaiseEventOptions raiseEventOptions, SendOptions sendOptions) => PhotonNetwork.RaiseEvent(code, data, raiseEventOptions, sendOptions);
     }
 }

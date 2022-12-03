@@ -1,14 +1,22 @@
+using Architecture.Services.Factories.Impl;
+using Architecture.Services.Gameplay.Impl;
 using Architecture.Services.General.Impl;
 using Architecture.Services.Impl;
+using Architecture.Services.Network;
 using Architecture.Services.Teaming.Impl;
 using Architecture.StateMachine;
 using UnityEngine;
 using Zenject;
 
 namespace Architecture.Bootstrappers {
-    public class GameplayBootstrapper : MonoInstaller
-    {
+    public class GameplayBootstrapper: MonoInstaller {
         [SerializeField] private Joystick _joystick;
+        private INetworkService _networkService;
+
+        [Inject]
+        public void PullDependencies(INetworkService networkService) {
+            _networkService = networkService;
+        }
 
         public override void InstallBindings()
         {
@@ -21,8 +29,14 @@ namespace Architecture.Bootstrappers {
             BindService<UIFactory>();
             BindService<GameStateMachine>();
             BindService<SpawnEnemiesService>();
-            BindService<GameClock>();
             BindService<TeamProvider>();
+
+            if (_networkService.IsMaster) {
+                BindService<GameClock>();    
+            }
+            else {
+                BindService<NetworkGameClock>();
+            }
         }
 
         private void BindService<TService>() 

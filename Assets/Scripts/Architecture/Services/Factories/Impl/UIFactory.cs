@@ -1,8 +1,9 @@
-﻿using Architecture.Services.General;
+﻿using Architecture.Services.Gameplay;
+using Architecture.Services.General;
 using UI.HUD;
 using UnityEngine;
 
-namespace Architecture.Services.Impl {
+namespace Architecture.Services.Factories.Impl {
     public class UIFactory : IUIFactory {
         private readonly IUIProvider _uiProvider;
         private readonly IInstantiateProvider _instantiateProvider;

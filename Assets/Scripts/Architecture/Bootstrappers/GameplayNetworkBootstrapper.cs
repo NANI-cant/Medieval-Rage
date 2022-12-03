@@ -6,6 +6,7 @@ namespace Architecture.Bootstrappers {
         public override void InstallBindings() {
             BindService<GameplayNetworkFactory>();
             BindService<ResourcesNetworkPrefabProvider>();
+            BindService<GameClockSync>();
         }
 
         private void BindService<TService>() 

@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Architecture.Services.Gameplay;
 using Architecture.Services.General;
 using Architecture.Services.Teaming;
 using ExitGames.Client.Photon;
@@ -13,7 +14,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-namespace Architecture.Services.Impl {
+namespace Architecture.Services.Factories.Impl {
     public class GameplayFactory : IGameplayFactory {
         private const string ContainerSuffix = "Container";
         private const string PlayerKey = "Player";
@@ -52,7 +53,7 @@ namespace Architecture.Services.Impl {
             var container = GetContainerFor(PlayerKey);
             var player = _instantiateProvider.Instantiate(_prefabProvider.Player, position, rotation, container);
             
-            SendPlayerThroughNetwork(player);
+            SendPlayerOverNetwork(player);
             var playerMetric = _metricProvider.PlayerMetric;
             
             player.GetComponent<PlayerInputBrain>().Construct(_inputService);
@@ -84,7 +85,7 @@ namespace Architecture.Services.Impl {
             return enemy;
         }
 
-        private void SendPlayerThroughNetwork(GameObject player) {
+        private void SendPlayerOverNetwork(GameObject player) {
             var photonView = player.GetComponent<PhotonView>();
             if (PhotonNetwork.AllocateViewID(photonView)) {
                 object[] data = new object[] {
@@ -102,7 +103,7 @@ namespace Architecture.Services.Impl {
                     Reliability = true
                 };
 
-                PhotonNetwork.RaiseEvent(NetworkInstantiationCode.Player, data, raiseEventOptions, sendOptions);
+                PhotonNetwork.RaiseEvent(NetworkCode.InstantiatePlayer, data, raiseEventOptions, sendOptions);
             }
             else {
                 Debug.LogError("Failed to allocate a ViewId.");

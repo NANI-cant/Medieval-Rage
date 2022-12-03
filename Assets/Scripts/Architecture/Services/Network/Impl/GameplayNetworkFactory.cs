@@ -29,10 +29,10 @@ namespace Architecture.Services.Network.Impl {
         }
         
         public void OnEvent(EventData photonEvent) {
-            if (photonEvent.Code == NetworkInstantiationCode.Player) {
-                object[] data = (object[]) photonEvent.CustomData;
-                CreatePlayer((int) data[2], (Vector3) data[0], (Quaternion) data[1]);
-            }
+            if (photonEvent.Code != NetworkCode.InstantiatePlayer) return;
+            
+            object[] data = (object[]) photonEvent.CustomData;
+            CreatePlayer((int) data[2], (Vector3) data[0], (Quaternion) data[1]);
         }
 
         private void CreatePlayer(int id, Vector3 position, Quaternion rotation) {

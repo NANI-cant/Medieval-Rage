@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Architecture.Services {
+namespace Architecture.Services.Factories {
     public interface IUIFactory {
         GameObject CreateHUD();
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Architecture.Services {
+namespace Architecture.Services.Gameplay {
     public interface IGameClock {
         event Action EnemiesShouldSpawn;
         event Action Ticked;

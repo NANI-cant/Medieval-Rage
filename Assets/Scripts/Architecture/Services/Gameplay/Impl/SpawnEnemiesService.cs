@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Architecture.Services.Factories;
 using Architecture.Services.General;
 using Gameplay.Setup;
 using UnityEngine;
 
-namespace Architecture.Services.Impl {
+namespace Architecture.Services.Gameplay.Impl {
     public class SpawnEnemiesService : ISpawnEnemiesService {
         private readonly IEnemySpawner[] _enemySpawners;
         private readonly IGameplayFactory _factory;

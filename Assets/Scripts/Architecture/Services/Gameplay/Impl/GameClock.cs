@@ -2,7 +2,7 @@
 using Architecture.Services.General;
 using Zenject;
 
-namespace Architecture.Services.Impl {
+namespace Architecture.Services.Gameplay.Impl {
     public class GameClock: IGameClock, ITickable {
         private readonly ITimeProvider _timeProvider;
         private bool _isStopped = true;

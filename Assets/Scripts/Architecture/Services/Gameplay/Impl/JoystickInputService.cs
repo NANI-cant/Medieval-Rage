@@ -1,8 +1,8 @@
+﻿using Extensions;
 using UnityEngine;
-using Extensions;
 using Zenject;
 
-namespace Architecture.Services.Impl {
+namespace Architecture.Services.Gameplay.Impl {
     public class JoystickInputService : IInputService, ITickable {
         private const float Smoothness = 0.1f;
         
