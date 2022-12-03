@@ -12,12 +12,12 @@ namespace Gameplay.UI {
         private void Awake() {
             _camera = Camera.main;
             _trackedHealth = GetComponentInParent<Health.Health>();
-            _trackedHealth.HitTaked += UpdateSlider;
+            _trackedHealth.HitTaken += UpdateSlider;
         }
 
         private void OnEnable() => SetupSlider(_trackedHealth.CurrentHealth);
         private void Start() => SetupSlider(_trackedHealth.CurrentHealth);
-        private void OnDestroy() => _trackedHealth.HitTaked -= UpdateSlider;
+        private void OnDestroy() => _trackedHealth.HitTaken -= UpdateSlider;
         private void Update() => LookAtCamera();
 
         private void LookAtCamera() => transform.forward = (_camera.transform.position - transform.position).normalized;

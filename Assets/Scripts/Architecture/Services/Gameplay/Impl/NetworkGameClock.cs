@@ -17,13 +17,8 @@ namespace Architecture.Services.Gameplay.Impl {
             _networkService = networkService;
         }
         
-        public void Start() {
-            _networkService.AddCallbackTarget(this);        
-        }
-
-        public void Stop() {
-            _networkService.RemoveCallbackTarget(this);
-        }
+        public void Start() => _networkService.AddCallbackTarget(this);
+        public void Stop() => _networkService.RemoveCallbackTarget(this);
 
         public void OnEvent(EventData photonEvent) {
             if (photonEvent.Code != NetworkCode.GameClockTime) return;

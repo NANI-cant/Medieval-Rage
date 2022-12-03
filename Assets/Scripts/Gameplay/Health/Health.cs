@@ -3,8 +3,8 @@ using Gameplay.Fighting;
 using UnityEngine;
 
 namespace Gameplay.Health{
-	public class Health : MonoBehaviour, IDamageable{
-		public event Action<TakeHitResult> HitTaked;
+	public class Health : MonoBehaviour, IHealth{
+		public event Action<TakeHitResult> HitTaken;
 		public event Action Died;
 		
 		public float MaxHealth { get; private set; }
@@ -22,7 +22,7 @@ namespace Gameplay.Health{
 
 		public void TakeHit(IReadOnlyAttackData attackData, MonoBehaviour damageDealer) {
 			CurrentHealth -= attackData.Damage;
-			HitTaked?.Invoke(new TakeHitResult(MaxHealth, CurrentHealth, attackData.Damage, damageDealer));
+			HitTaken?.Invoke(new TakeHitResult(MaxHealth, CurrentHealth, attackData.Damage, damageDealer));
 
 			if (CurrentHealth <= 0) Died?.Invoke();
 		}

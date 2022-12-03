@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 2529038956142944963}
   - component: {fileID: 4989498531162088662}
   - component: {fileID: 7016532618061602223}
+  - component: {fileID: -5576798036462998900}
+  - component: {fileID: -2245057125945267013}
   m_Layer: 7
   m_Name: MimicAvatar
   m_TagString: Untagged
@@ -141,6 +143,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 7016532618061602223}
+  - {fileID: -5576798036462998900}
   - {fileID: 1808889692435331382}
   - {fileID: 9179426993809536977}
   sceneViewId: 0
@@ -162,6 +165,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-5576798036462998900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105371501072153381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2245057125945267013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105371501072153381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3653436200068090456
 GameObject:
   m_ObjectHideFlags: 0

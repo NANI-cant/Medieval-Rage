@@ -888,6 +888,8 @@ GameObject:
   - component: {fileID: -4132609641415702377}
   - component: {fileID: 4020036687521101192}
   - component: {fileID: -4909053070976872303}
+  - component: {fileID: 2761155659480330171}
+  - component: {fileID: -8216041757575880257}
   m_Layer: 7
   m_Name: Lich
   m_TagString: Untagged
@@ -1128,6 +1130,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &2761155659480330171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7554950278415131902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8216041757575880257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7554950278415131902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7567168257995764601
 GameObject:
   m_ObjectHideFlags: 0

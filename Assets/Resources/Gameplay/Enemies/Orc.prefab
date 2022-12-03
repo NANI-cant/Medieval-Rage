@@ -1048,6 +1048,8 @@ GameObject:
   - component: {fileID: -3208662889655214448}
   - component: {fileID: 6776825871780250091}
   - component: {fileID: 3466764794380424086}
+  - component: {fileID: -500513622102081841}
+  - component: {fileID: -8528387346073709070}
   m_Layer: 7
   m_Name: Orc
   m_TagString: Untagged
@@ -1269,6 +1271,9 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 3466764794380424086}
+  - {fileID: -500513622102081841}
+  - {fileID: 2564448635776696872}
+  - {fileID: 5676637911205686735}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1288,6 +1293,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-500513622102081841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534366791077133355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8528387346073709070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534366791077133355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7534366791096440913
 GameObject:
   m_ObjectHideFlags: 0

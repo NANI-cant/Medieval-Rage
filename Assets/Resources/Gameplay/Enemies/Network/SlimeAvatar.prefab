@@ -585,6 +585,8 @@ GameObject:
   - component: {fileID: 8942138751617043580}
   - component: {fileID: 307662032850136543}
   - component: {fileID: 1771247264512525058}
+  - component: {fileID: -4171530948275303184}
+  - component: {fileID: -2024884896379571205}
   m_Layer: 7
   m_Name: SlimeAvatar
   m_TagString: Untagged
@@ -709,6 +711,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1771247264512525058}
+  - {fileID: -4171530948275303184}
   - {fileID: 434654862478501760}
   - {fileID: 6387409949261481284}
   sceneViewId: 0
@@ -730,6 +733,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-4171530948275303184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666911928279378232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2024884896379571205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6666911928279378232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8287175221062293573
 GameObject:
   m_ObjectHideFlags: 0

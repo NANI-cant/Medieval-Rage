@@ -37,13 +37,13 @@ namespace Gameplay.Enemy {
         }
 
         private void OnEnable() {
-            _health.HitTaked += ReactToHit;
+            _health.HitTaken += ReactToHit;
             _trigger.Enter += ReactTriggerEnter;   
         }
 
         private void OnDisable() {
             if(_aggroTarget != null) _aggroTarget.Died -= CalmDown;
-            _health.HitTaked -= ReactToHit;
+            _health.HitTaken -= ReactToHit;
             _trigger.Enter -= ReactTriggerEnter;   
         }
 

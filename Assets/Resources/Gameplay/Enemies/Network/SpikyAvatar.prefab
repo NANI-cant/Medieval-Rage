@@ -1304,6 +1304,8 @@ GameObject:
   - component: {fileID: 842119898176698631}
   - component: {fileID: 4620831521650934386}
   - component: {fileID: 1389424656679759154}
+  - component: {fileID: 676127186857385592}
+  - component: {fileID: -5288545079499806636}
   m_Layer: 7
   m_Name: SpikyAvatar
   m_TagString: Untagged
@@ -1428,6 +1430,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1389424656679759154}
+  - {fileID: 676127186857385592}
   - {fileID: 6673513573738799567}
   - {fileID: 2070161102743480150}
   sceneViewId: 0
@@ -1449,6 +1452,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &676127186857385592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268214370323375008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5288545079499806636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268214370323375008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1157757320368452652
 PrefabInstance:
   m_ObjectHideFlags: 0

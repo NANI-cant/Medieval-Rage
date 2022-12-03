@@ -19,6 +19,8 @@ namespace Tools {
             if(gameObject == null) return;
 
             gameObject.AddComponentSingle<PhotonView>();
+            gameObject.AddComponentSingle<GameObjectSync>();
+            gameObject.AddComponentSingle<HealthSync>();
             gameObject.AddComponentSingle<PhotonTransformView>()
                 .With(ptv => ptv.m_SynchronizePosition = true)
                 .With(ptv => ptv.m_SynchronizeRotation = true)
@@ -47,6 +49,8 @@ namespace Tools {
             gameObject.AddComponent<Team>();
             gameObject.AddComponent<DestroyObserver>();
             gameObject.AddComponent<PhotonView>();
+            gameObject.AddComponent<GameObjectSync>();
+            gameObject.AddComponent<HealthSync>();
             gameObject.AddComponent<PhotonTransformView>()
                 .With(ptv => ptv.m_SynchronizePosition = true)
                 .With(ptv => ptv.m_SynchronizeRotation = true)

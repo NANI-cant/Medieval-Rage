@@ -20,7 +20,14 @@ namespace Architecture.Services.Network.Impl {
         public bool JoinRoom(string name) => PhotonNetwork.JoinRoom(name);
         public void LoadGameplay() => PhotonNetwork.LoadLevel(GameplayName);
         public bool JoinRandom() => PhotonNetwork.JoinRandomRoom();
-        public bool CreateRoom() => PhotonNetwork.CreateRoom(null, new RoomOptions() {MaxPlayers = 4});
+
+        public bool CreateRoom() {
+            var options = new RoomOptions() {
+                MaxPlayers = 4,
+                CleanupCacheOnLeave = false
+            };
+            return PhotonNetwork.CreateRoom(null, options);   
+        }
         public bool RaiseEvent(byte code, object[] data, RaiseEventOptions raiseEventOptions, SendOptions sendOptions) => PhotonNetwork.RaiseEvent(code, data, raiseEventOptions, sendOptions);
         public bool AllocateViewID(PhotonView view) => PhotonNetwork.AllocateViewID(view);
     }

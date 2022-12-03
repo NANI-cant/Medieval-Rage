@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 263293865043001156}
   - component: {fileID: 9162510026665440472}
   - component: {fileID: 5045622692966328256}
+  - component: {fileID: -9115011138617522299}
+  - component: {fileID: 1766244509634602624}
   m_Layer: 7
   m_Name: GolemAvatar
   m_TagString: Untagged
@@ -141,6 +143,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5045622692966328256}
+  - {fileID: -9115011138617522299}
   - {fileID: 9024126621907695570}
   - {fileID: 2423619296892275067}
   sceneViewId: 0
@@ -162,6 +165,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-9115011138617522299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1766244509634602624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3643913711073258232
 GameObject:
   m_ObjectHideFlags: 0

@@ -1747,6 +1747,8 @@ GameObject:
   - component: {fileID: 3034714778614914335}
   - component: {fileID: 4319302959372009326}
   - component: {fileID: -7001338989475944820}
+  - component: {fileID: -6822682199642563357}
+  - component: {fileID: -5122609578043506039}
   m_Layer: 3
   m_Name: PlayerAvatar
   m_TagString: Untagged
@@ -1858,6 +1860,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -7001338989475944820}
+  - {fileID: -6822682199642563357}
   - {fileID: 5086903460056243943}
   - {fileID: 8415843759290424534}
   sceneViewId: 0
@@ -1879,6 +1882,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-6822682199642563357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310669198630374221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5122609578043506039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310669198630374221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6507955933166504272
 GameObject:
   m_ObjectHideFlags: 0

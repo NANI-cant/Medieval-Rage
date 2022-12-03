@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 1611172727495299071}
   - component: {fileID: 235789830635585450}
   - component: {fileID: 700539038857358527}
+  - component: {fileID: -9029421686065629491}
+  - component: {fileID: -9189132049803802429}
   m_Layer: 7
   m_Name: Golem
   m_TagString: Untagged
@@ -245,6 +247,9 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 700539038857358527}
+  - {fileID: -9029421686065629491}
+  - {fileID: 7027038457584561687}
+  - {fileID: 2342456078499011075}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -264,6 +269,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-9029421686065629491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9189132049803802429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3643913711073258232
 GameObject:
   m_ObjectHideFlags: 0

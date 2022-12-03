@@ -2,6 +2,7 @@
 using UnityEngine;
 
 namespace Network.Gameplay {
+    [RequireComponent(typeof(Animator))]
     public class AnimatorSync: MonoBehaviour, IPunObservable{
         private Animator _animator;
 

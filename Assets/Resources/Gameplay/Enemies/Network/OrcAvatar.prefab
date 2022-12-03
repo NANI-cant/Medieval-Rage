@@ -1041,6 +1041,8 @@ GameObject:
   - component: {fileID: 2461820529603034056}
   - component: {fileID: 5743148647419039787}
   - component: {fileID: 6832434318824783929}
+  - component: {fileID: -5168384836735623035}
+  - component: {fileID: -9094371987715540714}
   m_Layer: 7
   m_Name: OrcAvatar
   m_TagString: Untagged
@@ -1165,6 +1167,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6832434318824783929}
+  - {fileID: -5168384836735623035}
   - {fileID: 9062666359614092434}
   - {fileID: 7627596083641750451}
   sceneViewId: 0
@@ -1186,6 +1189,30 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-5168384836735623035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534366791077133355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c484a6c0d27e4a92b7437e64fafd7b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9094371987715540714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7534366791077133355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7534366791096440913
 GameObject:
   m_ObjectHideFlags: 0
