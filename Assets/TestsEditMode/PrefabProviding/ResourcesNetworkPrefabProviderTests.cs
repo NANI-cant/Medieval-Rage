@@ -99,5 +99,17 @@ namespace TestsEditMode.PrefabProviding {
             //Assert
             Assert.IsNotNull(orc);
         }
+        
+        [Test]
+        public void Dragon_Boss_Is_Not_Null() {
+            //Arrage
+            var provider = new ResourcesNetworkPrefabProvider();
+
+            //Act
+            var orc = provider.Enemy(EnemyId.DragonBoss);
+
+            //Assert
+            Assert.IsNotNull(orc);
+        }
     }
 }

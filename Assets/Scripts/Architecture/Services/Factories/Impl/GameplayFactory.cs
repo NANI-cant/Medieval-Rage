@@ -23,9 +23,9 @@ namespace Architecture.Services.Factories.Impl {
         private readonly IPrefabProvider _prefabProvider;
         private readonly IMetricProvider _metricProvider;
         private readonly ITeamProvider _teamProvider;
+        private readonly IAgentPriorityProvider _agentPriorityProvider;
         private readonly IInputService _inputService;
         private readonly IInstantiateProvider _instantiateProvider;
-        private readonly IDestroyProvider _destroyProvider;
         private readonly ITimeProvider _timeProvider;
         private readonly IRandomService _randomService;
         private readonly Dictionary<string, Transform> _containers = new();
@@ -37,18 +37,18 @@ namespace Architecture.Services.Factories.Impl {
             IPrefabProvider prefabProvider,
             IMetricProvider metricProvider,
             ITeamProvider teamProvider,
+            IAgentPriorityProvider agentPriorityProvider,
             IInputService inputService,
             IInstantiateProvider instantiateProvider,
-            IDestroyProvider destroyProvider,
             ITimeProvider timeProvider,
             IRandomService randomService
         ) {
             _prefabProvider = prefabProvider;
             _metricProvider = metricProvider;
             _teamProvider = teamProvider;
+            _agentPriorityProvider = agentPriorityProvider;
             _inputService = inputService;
             _instantiateProvider = instantiateProvider;
-            _destroyProvider = destroyProvider;
             _timeProvider = timeProvider;
             _randomService = randomService;
         }
@@ -78,7 +78,7 @@ namespace Architecture.Services.Factories.Impl {
             var enemyMetric = _metricProvider.EnemyMetric(enemyId);
             
             enemy.GetComponent<Aggro>().Construct(enemyMetric.AggroDuration, enemyMetric.AggroRadius, _timeProvider);
-            enemy.GetComponent<AIMover>().Construct(enemyMetric.Speed);
+            enemy.GetComponent<AIMover>().Construct(enemyMetric.Speed, enemyMetric.AngularSpeed, _agentPriorityProvider.NextPriority);
             enemy.GetComponent<AutoAttack>().Construct(enemyMetric.AttackCooldown, enemyMetric.AttackRadius, enemyMetric.AttackData, _timeProvider);
             enemy.GetComponent<Health>().Construct(enemyMetric.MaxHealth);
             enemy.GetComponent<AttackTargetPriority>().Construct(enemyMetric.AttackTargetPriority);

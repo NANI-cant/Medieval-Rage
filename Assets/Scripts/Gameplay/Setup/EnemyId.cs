@@ -7,5 +7,6 @@ namespace Gameplay.Setup {
         Beholder,
         Slime,
         Spiky,
+        DragonBoss
     }
 }

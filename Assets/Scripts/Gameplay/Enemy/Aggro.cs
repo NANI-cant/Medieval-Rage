@@ -1,8 +1,6 @@
 ﻿using System;
-using Architecture.Services;
 using Architecture.Services.General;
 using Gameplay.Fighting;
-using Gameplay.Player;
 using Gameplay.Teaming;
 using Gameplay.Utils;
 using UnityEngine;
@@ -10,6 +8,7 @@ using UnityEngine;
 namespace Gameplay.Enemy {
     [RequireComponent(typeof(AIMover))]
     [RequireComponent(typeof(Health.Health))]
+    [RequireComponent(typeof(Team))]
     public class Aggro: MonoBehaviour {
         [SerializeField] private SphereTriggerObserver _trigger;
 
@@ -54,6 +53,18 @@ namespace Gameplay.Enemy {
             _mover.MoveTo(_aggroTarget.transform.position);
         }
 
+        public void TryAggro(Component potentialTarget) {
+            if (_aggroTarget != null) return;
+            if (!potentialTarget.TryGetComponent<Health.Health>(out var health)) return;
+            if (potentialTarget.TryGetComponent<Team>(out var targetTeam) && _team.Id == targetTeam.Id) return;
+
+            _aggroTarget = health;
+
+            _aggroTarget.Died += CalmDown;
+            _calmDownTimer = new Timer(_duration, CalmDown);
+            Aggrieved?.Invoke();
+        }
+
         public void TurnOn() {
             enabled = true;
             _trigger.Activate();
@@ -66,18 +77,6 @@ namespace Gameplay.Enemy {
 
         private void ReactTriggerEnter(Collider other) => TryAggro(other);
         private void ReactToHit(TakeHitResult takeHitResult) => TryAggro(takeHitResult.DamageDealer);
-
-        private void TryAggro(Component potentialTarget) {
-            if (_aggroTarget != null) return;
-            if (!potentialTarget.TryGetComponent<Health.Health>(out var health)) return;
-            if (potentialTarget.TryGetComponent<Team>(out var targetTeam) && _team.Id == targetTeam.Id) return;
-
-            _aggroTarget = health;
-
-            _aggroTarget.Died += CalmDown;
-            _calmDownTimer = new Timer(_duration, CalmDown);
-            Aggrieved?.Invoke();
-        }
 
         private void CalmDown() {
             _calmDownTimer = null;

@@ -10,7 +10,8 @@ namespace Architecture.Services.Gameplay.Impl {
         public GameClock(ITimeProvider timeProvider) {
             _timeProvider = timeProvider;
         }
-
+        
+        public event Action BossShouldSpawn;
         public event Action EnemiesShouldSpawn;
         public event Action Ticked;
 
@@ -22,7 +23,10 @@ namespace Architecture.Services.Gameplay.Impl {
         public void Tick() {
             if(_isStopped) return;
             Time += _timeProvider.DeltaTime;
-            if (Time % 10 <= _timeProvider.DeltaTime) EnemiesShouldSpawn?.Invoke();
+
+            if (Time <= _timeProvider.DeltaTime) BossShouldSpawn?.Invoke();
+            if (Time % 30 <= _timeProvider.DeltaTime) EnemiesShouldSpawn?.Invoke();
+            
             Ticked?.Invoke();
         }
     }

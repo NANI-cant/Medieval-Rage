@@ -16,12 +16,15 @@ namespace Architecture.StateMachine {
             ITraderSpawner[] traderSpawnPoints,
             IRandomService randomService,
             IGameClock gameClock,
-            ISpawnEnemiesService spawnEnemiesService, 
-            IUIFactory uiFactory) 
+            ISpawnEnemiesService spawnEnemiesService,
+            IUIFactory uiFactory,
+            IBossSpawner bossSpawner, 
+            IInputService inputService) 
         {
             States = new Dictionary<Type, State> {
                 [typeof(InitializationState)] = new InitializationState(this, gameplayFactory, uiFactory, randomService, gameClock, playerSpawners, traderSpawnPoints, camera),
-                [typeof(GameLoopState)] = new GameLoopState(this, spawnEnemiesService, gameClock),
+                [typeof(GameLoopState)] = new GameLoopState(this, spawnEnemiesService, bossSpawner, gameClock),
+                [typeof(GameEndState)] = new GameEndState(this, gameClock, uiFactory, inputService),
             };
         }
 

@@ -4,11 +4,13 @@ using System.Linq;
 using Architecture.Services;
 using Architecture.Services.General;
 using Gameplay.Player;
+using Gameplay.Teaming;
 using Gameplay.Utils;
 using UnityEngine;
 
 namespace Gameplay.Fighting {
     [RequireComponent(typeof(Rotator))]
+    [RequireComponent(typeof(Team))]
     public class AutoAttack: MonoBehaviour {
         [SerializeField] private SphereTriggerObserver _trigger;
         
@@ -20,6 +22,7 @@ namespace Gameplay.Fighting {
         private ITimeProvider _timeProvider;
         private bool _isReady = true;
         private bool _isOn = true;
+        private Team _team;
 
         public event Action Swung;
         public event Action TargetCaptured;
@@ -40,7 +43,10 @@ namespace Gameplay.Fighting {
             _trigger.Radius = radius;
         }
 
-        private void Awake() => _rotator = GetComponent<Rotator>();
+        private void Awake() {
+            _rotator = GetComponent<Rotator>();
+            _team = GetComponent<Team>();
+        }
 
         private void Update() {
             _cooldownTimer?.Tick(_timeProvider.DeltaTime);
@@ -95,9 +101,11 @@ namespace Gameplay.Fighting {
             if(_targetsQueue.Count == 0) TargetLost?.Invoke();
         }
 
-        private static bool TrySetupTarget(Collider other, out AttackTarget potentialTarget) {
+        private bool TrySetupTarget(Collider other, out AttackTarget potentialTarget) {
             potentialTarget = new AttackTarget(null, 0, null);
             if (!other.TryGetComponent<IDamageable>(out var damageable)) return false;
+            if (other.TryGetComponent<Team>(out var targetTeam) && _team.Id == targetTeam.Id) return false;
+            
             int priority = other.TryGetComponent<AttackTargetPriority>(out var targetPriority)
                 ? targetPriority.Priority
                 : int.MaxValue;

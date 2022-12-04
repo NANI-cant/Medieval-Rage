@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Network.Gameplay {
     [RequireComponent(typeof(PhotonView))]
-    public class GameObjectSync: MonoBehaviour,IPunObservable {
+    public class GameObjectSync: MonoBehaviour, IPunObservable {
         private PhotonView _view;
 
         private void Awake() => _view = GetComponent<PhotonView>();

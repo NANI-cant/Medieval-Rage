@@ -9,5 +9,6 @@ namespace Architecture.Services.Gameplay {
         
         void Start();
         void Stop();
+        event Action BossShouldSpawn;
     }
 }

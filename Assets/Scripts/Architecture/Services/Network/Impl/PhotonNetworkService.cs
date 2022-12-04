@@ -8,6 +8,7 @@ namespace Architecture.Services.Network.Impl {
 
         public int PlayersCount => PhotonNetwork.PlayerList.Length;
         public bool IsMaster => PhotonNetwork.IsMasterClient;
+        
         public bool AutomaticallySyncScene { 
             get => PhotonNetwork.AutomaticallySyncScene; 
             set => PhotonNetwork.AutomaticallySyncScene = value; 
@@ -20,6 +21,9 @@ namespace Architecture.Services.Network.Impl {
         public bool JoinRoom(string name) => PhotonNetwork.JoinRoom(name);
         public void LoadGameplay() => PhotonNetwork.LoadLevel(GameplayName);
         public bool JoinRandom() => PhotonNetwork.JoinRandomRoom();
+        public bool RaiseEvent(byte code, object[] data, RaiseEventOptions raiseEventOptions, SendOptions sendOptions) => PhotonNetwork.RaiseEvent(code, data, raiseEventOptions, sendOptions);
+        public bool AllocateViewID(PhotonView view) => PhotonNetwork.AllocateViewID(view);
+        public bool Leave() => PhotonNetwork.LeaveRoom();
 
         public bool CreateRoom() {
             var options = new RoomOptions() {
@@ -28,7 +32,5 @@ namespace Architecture.Services.Network.Impl {
             };
             return PhotonNetwork.CreateRoom(null, options);   
         }
-        public bool RaiseEvent(byte code, object[] data, RaiseEventOptions raiseEventOptions, SendOptions sendOptions) => PhotonNetwork.RaiseEvent(code, data, raiseEventOptions, sendOptions);
-        public bool AllocateViewID(PhotonView view) => PhotonNetwork.AllocateViewID(view);
     }
 }

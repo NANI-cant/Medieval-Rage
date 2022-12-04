@@ -7,5 +7,9 @@ namespace Gameplay.Setup {
         [SerializeField] private EnemyId[] _enemies;
         
         public EnemyId[] Enemies => _enemies;
+
+        public EnemyPack(params EnemyId[] _enemyIds) {
+            _enemies = _enemyIds;
+        }
     }
 }

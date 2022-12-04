@@ -1,4 +1,5 @@
-﻿using Gameplay.Setup.Impl;
+﻿using System;
+using Gameplay.Setup.Impl;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Editors {
         [DrawGizmo(GizmoType.Active | GizmoType.Pickable | GizmoType.NonSelected)]
         public static void RenderCustomGizmo(EnemySpawner point, GizmoType gizmo) {
             Gizmos.color = new Color(1f, 0f, 0f, 0.75f);
-            Gizmos.DrawSphere(point.Position, 1f);
+            Gizmos.DrawSphere(point.transform.position, point.SpawningRadius);
         }
     }
 }

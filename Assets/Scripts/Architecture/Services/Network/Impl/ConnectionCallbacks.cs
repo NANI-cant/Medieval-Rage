@@ -13,21 +13,21 @@ namespace Architecture.Services.Network.Impl {
             _sceneLoadService = sceneLoadService;
             _networkService.AddCallbackTarget(this);
         }
-
-        public void OnConnectedToMaster() {
-            _networkService.AutomaticallySyncScene = true;
-            _networkService.JoinLobby();   
-        }
         
         public void OnJoinedLobby() => _sceneLoadService.LoadLobby();
+        public void OnJoinRandomFailed(short returnCode, string message) => _networkService.CreateRoom();
+        public void OnLeftRoom() => _sceneLoadService.LoadLobby();
 
         public void OnPlayerEnteredRoom(Player newPlayer) {
             if (_networkService.PlayersCount == 2 && _networkService.IsMaster) {
                 _networkService.LoadGameplay();
             }
         }
-
-        public void OnJoinRandomFailed(short returnCode, string message) => _networkService.CreateRoom();
+        
+        public void OnConnectedToMaster() {
+            _networkService.AutomaticallySyncScene = true;
+            _networkService.JoinLobby();   
+        }
 
         public void OnJoinedRoom() { }
         public void OnConnected() { }
@@ -42,7 +42,6 @@ namespace Architecture.Services.Network.Impl {
         public void OnCreatedRoom() {}
         public void OnCreateRoomFailed(short returnCode, string message) { }
         public void OnJoinRoomFailed(short returnCode, string message) { }
-        public void OnLeftRoom() { }
         public void OnPlayerLeftRoom(Player otherPlayer) { }
         public void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) { }
         public void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps) { }

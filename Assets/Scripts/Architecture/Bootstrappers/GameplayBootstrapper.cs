@@ -30,6 +30,7 @@ namespace Architecture.Bootstrappers {
             BindService<GameStateMachine>();
             BindService<SpawnEnemiesService>();
             BindService<TeamProvider>();
+            BindService<AgentPriorityProvider>();
 
             if (_networkService.IsMaster) {
                 BindService<GameClock>();    

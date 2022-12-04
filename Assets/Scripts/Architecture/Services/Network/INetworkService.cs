@@ -17,5 +17,6 @@ namespace Architecture.Services.Network {
         bool CreateRoom();
         bool RaiseEvent(byte code, object[] data, RaiseEventOptions raiseEventOptions, SendOptions sendOptions);
         bool AllocateViewID(PhotonView view);
+        bool Leave();
     }
 }
