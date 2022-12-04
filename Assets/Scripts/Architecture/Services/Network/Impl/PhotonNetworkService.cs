@@ -28,7 +28,8 @@ namespace Architecture.Services.Network.Impl {
         public bool CreateRoom() {
             var options = new RoomOptions() {
                 MaxPlayers = 4,
-                CleanupCacheOnLeave = false
+                CleanupCacheOnLeave = false,
+                EmptyRoomTtl = 0,
             };
             return PhotonNetwork.CreateRoom(null, options);   
         }

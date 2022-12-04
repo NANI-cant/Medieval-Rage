@@ -4,10 +4,14 @@ using Zenject;
 namespace Architecture.Bootstrappers {
     public class GameplayNetworkBootstrapper : MonoInstaller {
         public override void InstallBindings() {
-            BindService<NetworkGameplayFactory>();
-            BindService<GameplayFactorySync>();
             BindService<ResourcesNetworkPrefabProvider>();
             BindService<GameClockSync>();
+            
+            BindService<NetworkGameplayFactory>();
+            BindService<GameplayFactorySync>();
+            
+            BindService<NetworkGameEnd>();
+            BindService<GameEndSync>();
         }
 
         private void BindService<TService>() 
