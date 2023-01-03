@@ -1,7 +1,7 @@
 using Gameplay.Setup;
 using Metrics;
 
-namespace Architecture.Services {
+namespace Architecture.Services.AssetProviding {
     public interface IMetricProvider {
         IPlayerMetric PlayerMetric { get; }
         

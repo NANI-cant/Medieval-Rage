@@ -1,4 +1,5 @@
-﻿using Architecture.Services.Gameplay;
+﻿using Architecture.Services.AssetProviding;
+using Architecture.Services.Gameplay;
 using Architecture.Services.General;
 using Architecture.Services.Network;
 using UI.EndGamePanel;

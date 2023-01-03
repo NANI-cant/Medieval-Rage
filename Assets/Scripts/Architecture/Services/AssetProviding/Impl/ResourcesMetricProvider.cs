@@ -3,7 +3,7 @@ using Metrics;
 using Metrics.Impl;
 using UnityEngine;
 
-namespace Architecture.Services.Impl {
+namespace Architecture.Services.AssetProviding.Impl {
     public class ResourcesMetricProvider : IMetricProvider {
         private const string PlayerMetricPath = "Metrics/PlayerMetric";
         private const string EnemyMetricFolderPath = "Metrics/Enemies/";

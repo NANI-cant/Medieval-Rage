@@ -7,7 +7,8 @@ namespace Architecture.Bootstrappers {
             BindService<ResourcesNetworkPrefabProvider>();
             BindService<GameClockSync>();
             
-            BindService<NetworkGameplayFactory>();
+            //BindService<NetworkGameplayFactory>();
+            BindService<NewNetworkGameplayFactory>();
             BindService<GameplayFactorySync>();
             
             BindService<NetworkGameEnd>();

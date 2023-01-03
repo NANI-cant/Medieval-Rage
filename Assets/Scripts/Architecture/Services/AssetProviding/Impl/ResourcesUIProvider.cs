@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Architecture.Services.Impl {
+namespace Architecture.Services.AssetProviding.Impl {
     public class ResourcesUIProvider : IUIProvider {
         private const string HUDPath = "UI/HUD";
         private const string EndGamePanelPath = "UI/EndGamePanel";

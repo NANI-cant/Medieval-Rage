@@ -1,7 +1,7 @@
 using Gameplay.Setup;
 using UnityEngine;
 
-namespace Architecture.Services.Impl {
+namespace Architecture.Services.AssetProviding.Impl {
     public class ResourcesPrefabProvider : IPrefabProvider {
         private const string RootPath = "Gameplay/";
         private const string EnemiesFolder = "Enemies/";

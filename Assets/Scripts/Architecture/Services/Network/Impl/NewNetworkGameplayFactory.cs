@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using Architecture.Services.AssetProviding;
+using Architecture.Services.Factories;
+using Architecture.Services.Factories.Impl;
 using Architecture.Services.Gameplay;
 using Architecture.Services.General;
 using Architecture.Services.Teaming;
@@ -16,66 +17,69 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-namespace Architecture.Services.Factories.Impl {
-    public class GameplayFactory : IGameplayFactory {
-        private const string ContainerSuffix = "Container";
-        private const string PlayerKey = "Player";
-
-        private readonly IPrefabProvider _prefabProvider;
+namespace Architecture.Services.Network.Impl {
+    public class NewNetworkGameplayFactory: IOnEventCallback {
+        private readonly INetworkPrefabProvider _networkPrefabProvider;
         private readonly IMetricProvider _metricProvider;
+        private readonly IInstantiateProvider _instantiateProvider;
+        private readonly IPrefabProvider _prefabProvider;
         private readonly ITeamProvider _teamProvider;
         private readonly IAgentPriorityProvider _agentPriorityProvider;
         private readonly IInputService _inputService;
-        private readonly IInstantiateProvider _instantiateProvider;
         private readonly ITimeProvider _timeProvider;
         private readonly IRandomService _randomService;
-        private readonly Dictionary<string, Transform> _containers = new();
-        
-        public event Action<GameObject> PlayerCreated;
-        public event Action<GameObject, EnemyId> EnemyCreated;
 
-        public GameplayFactory(
-            IPrefabProvider prefabProvider,
+        public NewNetworkGameplayFactory(
+            INetworkService networkService,
+            INetworkPrefabProvider networkPrefabProvider,
             IMetricProvider metricProvider,
+            IInstantiateProvider instantiateProvider,
+            IPrefabProvider prefabProvider,
             ITeamProvider teamProvider,
             IAgentPriorityProvider agentPriorityProvider,
             IInputService inputService,
-            IInstantiateProvider instantiateProvider,
             ITimeProvider timeProvider,
             IRandomService randomService
         ) {
-            _prefabProvider = prefabProvider;
+            _networkPrefabProvider = networkPrefabProvider;
             _metricProvider = metricProvider;
+            _instantiateProvider = instantiateProvider;
+            _prefabProvider = prefabProvider;
             _teamProvider = teamProvider;
             _agentPriorityProvider = agentPriorityProvider;
             _inputService = inputService;
-            _instantiateProvider = instantiateProvider;
             _timeProvider = timeProvider;
             _randomService = randomService;
+
+            networkService.AddCallbackTarget(this);
         }
 
-        public GameObject CreatePlayerCharacter(Vector3 position, Quaternion rotation) {
-            var container = GetContainerFor(PlayerKey);
-            var player = _instantiateProvider.Instantiate(_prefabProvider.Player, position, rotation, container);
+        public void OnEvent(EventData photonEvent) {
+            switch (photonEvent.Code) {
+                case NetworkCode.InstantiatePlayer: {
+                    object[] data = (object[]) photonEvent.CustomData;
+                    CreatePlayer((int) data[2], (Vector3) data[0], (Quaternion) data[1]);
+                    break;
+                }
+                case NetworkCode.InstantiateEnemy: {
+                    object[] data = (object[]) photonEvent.CustomData;
+                    CreateEnemy((int) data[0], (EnemyId) data[1], (Vector3) data[2], (Quaternion) data[3]);
+                    break;
+                }
+            }
+        }
+
+        private void CreatePlayer(int viewId, Vector3 position, Quaternion rotation) {
+            GameObject player = _instantiateProvider.Instantiate(_networkPrefabProvider.Player, position, rotation);
             var playerMetric = _metricProvider.PlayerMetric;
             
-            player.GetComponent<PlayerInputBrain>().Construct(_inputService);
-            player.GetComponent<Mover>().Construct(playerMetric.Speed);
-            player.GetComponent<Rotator>().Construct(playerMetric.AngularSpeed, _timeProvider);
-            player.GetComponent<AutoAttack>().Construct(playerMetric.CoolDown, playerMetric.AttackRadius, playerMetric.AttackData, _timeProvider);
-            player.GetComponent<CharacterAnimator>().Construct(playerMetric.AttackSpeed, _randomService);
-            player.GetComponent<AttackTargetPriority>().Construct(playerMetric.AttackTargetPriority);
             player.GetComponent<Health>().Construct(playerMetric.MaxHealth);
             player.GetComponent<Team>().Construct(_teamProvider.NextPlayerTeamId);
-            
-            PlayerCreated?.Invoke(player);
-
-            return player;
+            player.GetComponent<PhotonView>().ViewID = viewId;
         }
 
-        public GameObject CreateEnemy(EnemyId enemyId, Vector3 position, Quaternion rotation) {
-            var container = GetContainerFor(enemyId.ToString());
-            var enemy = _instantiateProvider.Instantiate(_prefabProvider.Enemy(enemyId), position, rotation, container);
+        private void CreateEnemy(int viewId, EnemyId enemyId, Vector3 position, Quaternion rotation) {
+            var enemy = _instantiateProvider.Instantiate(_prefabProvider.Enemy(enemyId), position, rotation);
             var enemyMetric = _metricProvider.EnemyMetric(enemyId);
             
             enemy.GetComponent<Aggro>().Construct(enemyMetric.AggroDuration, enemyMetric.AggroRadius, _timeProvider);
@@ -86,20 +90,9 @@ namespace Architecture.Services.Factories.Impl {
             enemy.GetComponent<EnemyAnimator>().Construct(enemyMetric.AttackSpeed, _randomService);
             enemy.GetComponent<Rotator>().Construct(enemyMetric.AngularSpeed, _timeProvider);
             enemy.GetComponent<Team>().Construct(_teamProvider.EnemyTeamId);
-
-            EnemyCreated?.Invoke(enemy, enemyId);
             
-            return enemy;
-        }
-
-        private Transform GetContainerFor(string key) {
-            string containerKey = key + ContainerSuffix;
-            if (!_containers.ContainsKey(containerKey)) {
-                _containers[containerKey] = new GameObject(containerKey).transform;
-            }
-
-            Transform container = _containers[containerKey];
-            return container;
+            enemy.GetComponent<PhotonView>().ViewID = viewId;
+            enemy.GetComponent<Enemy>().Construct(false);
         }
     }
 }

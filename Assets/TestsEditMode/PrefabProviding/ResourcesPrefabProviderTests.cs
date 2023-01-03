@@ -1,4 +1,4 @@
-﻿using Architecture.Services.Impl;
+﻿using Architecture.Services.AssetProviding.Impl;
 using Gameplay.Player;
 using Gameplay.Setup;
 using NUnit.Framework;
