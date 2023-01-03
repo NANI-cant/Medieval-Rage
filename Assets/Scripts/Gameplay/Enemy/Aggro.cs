@@ -12,16 +12,18 @@ namespace Gameplay.Enemy {
     public class Aggro: MonoBehaviour {
         [SerializeField] private SphereTriggerObserver _trigger;
 
-        public event Action CalmedDown;
-        public event Action Aggrieved;
+        private AIMover _mover;
+        private Team _team;
+        private Health.Health _health;
 
         private float _duration = 5f;
-        private AIMover _mover;
-        private Health.Health _health;
+        private ITimeProvider _timeProvider;
+        
         private Health.Health _aggroTarget;
         private Timer _calmDownTimer;
-        private ITimeProvider _timeProvider;
-        private Team _team;
+
+        public event Action CalmedDown;
+        public event Action Aggrieved;
 
         public void Construct(float duration, float radius, ITimeProvider timeProvider) {
             _duration = duration;

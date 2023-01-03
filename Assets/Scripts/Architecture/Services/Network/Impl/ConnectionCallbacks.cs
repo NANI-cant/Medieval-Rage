@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using Architecture.Services.General;
-using ExitGames.Client.Photon;
-using Photon.Pun;
 using Photon.Realtime;
 
 namespace Architecture.Services.Network.Impl {
-    public class ConnectionCallbacks : IConnectionCallbacks, ILobbyCallbacks, IMatchmakingCallbacks, IInRoomCallbacks {
+    public class ConnectionCallbacks : IConnectionCallbacks, ILobbyCallbacks, IMatchmakingCallbacks {
         private readonly INetworkService _networkService;
         private readonly ISceneLoadService _sceneLoadService;
 
@@ -19,12 +17,6 @@ namespace Architecture.Services.Network.Impl {
         public void OnJoinRandomFailed(short returnCode, string message) => _networkService.CreateRoom();
         public void OnLeftRoom() => _sceneLoadService.LoadLobby();
 
-        public void OnPlayerEnteredRoom(Player newPlayer) {
-            if (_networkService.PlayersCount == 2 && _networkService.IsMaster) {
-                _networkService.LoadGameplay();
-            }
-        }
-        
         public void OnConnectedToMaster() {
             _networkService.AutomaticallySyncScene = true;
             _networkService.JoinLobby();   
@@ -43,9 +35,6 @@ namespace Architecture.Services.Network.Impl {
         public void OnCreatedRoom() {}
         public void OnCreateRoomFailed(short returnCode, string message) { }
         public void OnJoinRoomFailed(short returnCode, string message) { }
-        public void OnPlayerLeftRoom(Player otherPlayer) { }
-        public void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) { }
-        public void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps) { }
-        public void OnMasterClientSwitched(Player newMasterClient) { }
+
     }
 }

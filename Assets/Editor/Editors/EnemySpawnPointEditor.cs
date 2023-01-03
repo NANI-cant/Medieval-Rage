@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay.Setup.Impl;
+﻿using Gameplay.Setup.Impl;
 using UnityEditor;
 using UnityEngine;
 

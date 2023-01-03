@@ -9,23 +9,24 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2095753625212820356}
+  - component: {fileID: 8405993231302222948}
   - component: {fileID: 4584889124154024642}
   - component: {fileID: 4963346711549526017}
   - component: {fileID: 5661998235593369217}
-  - component: {fileID: 5952490509426541959}
   - component: {fileID: 8706848277151090799}
+  - component: {fileID: 5952490509426541959}
   - component: {fileID: 3838364458199866916}
   - component: {fileID: 4580462321898791975}
-  - component: {fileID: 8405993231302222948}
-  - component: {fileID: 2325707927995667953}
   - component: {fileID: 7515592704363883841}
   - component: {fileID: 300420526638046909}
-  - component: {fileID: 7958381658293723696}
   - component: {fileID: 1611172727495299071}
+  - component: {fileID: 2325707927995667953}
+  - component: {fileID: 7958381658293723696}
   - component: {fileID: 235789830635585450}
   - component: {fileID: 700539038857358527}
   - component: {fileID: -9029421686065629491}
   - component: {fileID: -9189132049803802429}
+  - component: {fileID: 3342430418161966045}
   m_Layer: 7
   m_Name: Golem
   m_TagString: Untagged
@@ -52,6 +53,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8405993231302222948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3872f7e448c541d1afbcedd86c3ef38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &4584889124154024642
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -101,18 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trigger: {fileID: 1030139013388483336}
---- !u!114 &5952490509426541959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6222e6a7840467cbdb84d3202e8f07c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8706848277151090799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +127,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trigger: {fileID: 9179048677162779007}
+--- !u!114 &5952490509426541959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6222e6a7840467cbdb84d3202e8f07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3838364458199866916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,34 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef1d8f0ed6e48a6b94a67cf74db6917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8405993231302222948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3872f7e448c541d1afbcedd86c3ef38b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &2325707927995667953
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!114 &7515592704363883841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,18 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e71dc8d18f474795df95e12c58ca40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7958381658293723696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095753625212820357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abb2ffa364d14dba99eb4fea46e7b46e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1611172727495299071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +198,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2908adad27954fe9bea0fb4683e99b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &2325707927995667953
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &7958381658293723696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb2ffa364d14dba99eb4fea46e7b46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &235789830635585450
@@ -291,6 +292,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d10a46a862b04e959276900d472d6538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3342430418161966045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095753625212820357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed06379268171894181c2317149cfb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3643913711073258232

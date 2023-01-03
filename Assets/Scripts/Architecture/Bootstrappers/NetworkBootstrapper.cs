@@ -1,4 +1,5 @@
-﻿using Architecture.Services.Network.Impl;
+﻿using Architecture.Services.Network;
+using Architecture.Services.Network.Impl;
 using Zenject;
 
 namespace Architecture.Bootstrappers {
@@ -7,6 +8,7 @@ namespace Architecture.Bootstrappers {
             BindService<NetworkStartup>();
             BindService<PhotonNetworkService>();
             BindService<ConnectionCallbacks>();
+            BindService<RoomService>();
         }
         
         private void BindService<TService>() 

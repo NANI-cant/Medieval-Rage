@@ -13,16 +13,18 @@ namespace Gameplay.Fighting {
     [RequireComponent(typeof(Team))]
     public class AutoAttack: MonoBehaviour {
         [SerializeField] private SphereTriggerObserver _trigger;
+
+        private Rotator _rotator;
+        private Team _team;
+        private ITimeProvider _timeProvider;
         
         private float _coolDown;
-        private List<AttackTarget> _targetsQueue = new ();
-        private Rotator _rotator;
         private AttackData _attackData;
+        
+        private List<AttackTarget> _targetsQueue = new ();
         private Timer _cooldownTimer;
-        private ITimeProvider _timeProvider;
         private bool _isReady = true;
         private bool _isOn = true;
-        private Team _team;
 
         public event Action Swung;
         public event Action TargetCaptured;

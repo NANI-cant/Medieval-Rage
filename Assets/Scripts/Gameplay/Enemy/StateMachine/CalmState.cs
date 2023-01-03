@@ -22,6 +22,7 @@ namespace Gameplay.Enemy.StateMachine {
         }
 
         public override void Enter() {
+            Debug.Log("Calm");
             _autoAttack.TurnOff();
             _aggro.TurnOff();
             _mover.ReturnToSpawn();

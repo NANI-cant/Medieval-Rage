@@ -17,13 +17,14 @@ namespace Gameplay.Enemy {
     [RequireComponent(typeof(DestroyObserver))]
     [RequireComponent(typeof(Rotator))]
     public class Enemy : MonoBehaviour {
-        private EnemyStateMachine _stateMachine;
         private Aggro _aggro;
         private AIMover _mover;
         private AutoAttack _autoAttack;
         private EnemyAnimator _animator;
         private Health.Health _health;
         private bool _isMine;
+        
+        public EnemyStateMachine StateMachine { get; private set; }
 
         private void Awake() {
             _aggro = GetComponent<Aggro>();
@@ -33,17 +34,17 @@ namespace Gameplay.Enemy {
             _health = GetComponent<Health.Health>();
             _isMine = true;
             
-            _stateMachine = new EnemyStateMachine(_autoAttack, _mover, _aggro, _animator);
+            StateMachine = new EnemyStateMachine(_autoAttack, _mover, _aggro, _animator);
         }
 
         public void Construct(bool isMine) => _isMine = isMine;
 
         private void Start() {
             if (_isMine) {
-                _stateMachine.TranslateTo<CalmState>();        
+                StateMachine.TranslateTo<CalmState>();        
             }
             else {
-                _stateMachine.TranslateTo<NetworkAvatarState>();
+                StateMachine.TranslateTo<NetworkAvatarState>();
             }
         }
         
