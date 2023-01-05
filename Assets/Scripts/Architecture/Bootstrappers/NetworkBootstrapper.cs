@@ -5,10 +5,11 @@ using Zenject;
 namespace Architecture.Bootstrappers {
     public class NetworkBootstrapper: MonoInstaller {
         public override void InstallBindings() {
-            BindService<NetworkStartup>();
             BindService<PhotonNetworkService>();
-            BindService<ConnectionCallbacks>();
+            BindService<ConnectionService>();
             BindService<RoomService>();
+            BindService<MatchmakingService>();
+            BindService<LobbyService>();
         }
         
         private void BindService<TService>() 

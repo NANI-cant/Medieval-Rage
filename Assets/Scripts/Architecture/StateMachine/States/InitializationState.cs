@@ -2,6 +2,7 @@ using Architecture.Services;
 using Architecture.Services.Factories;
 using Architecture.Services.Gameplay;
 using Architecture.Services.General;
+using Architecture.Services.Network;
 using CameraLogic;
 using Gameplay.Setup;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Architecture.StateMachine.States {
         private readonly IPlayerSpawner[] _playerSpawners;
         private readonly ITraderSpawner[] _traderSpawnPoints;
         private readonly Camera _camera;
+        private readonly INetworkService _networkService;
 
         public InitializationState(
             GameStateMachine gameStateMachine,
@@ -25,7 +27,8 @@ namespace Architecture.StateMachine.States {
             IGameClock gameClock,
             IPlayerSpawner[] playerSpawners,
             ITraderSpawner[] traderSpawnPoints,
-            Camera camera
+            Camera camera,
+            INetworkService networkService
         ) {
             _gameStateMachine = gameStateMachine;
             _gameplayFactory = gameplayFactory;
@@ -35,16 +38,22 @@ namespace Architecture.StateMachine.States {
             _playerSpawners = playerSpawners;
             _traderSpawnPoints = traderSpawnPoints;
             _camera = camera;
+            _networkService = networkService;
         }
 
         public override void Enter() {
             var player = SpawnPlayer();
             SetupCamera(player);
-            SpawnTraders();
             _uiFactory.CreateHUD();
             _gameClock.Start();
 
-            _gameStateMachine.TranslateTo<GameLoopState>();
+            if (_networkService.IsMaster) {
+                _gameStateMachine.TranslateTo<GameLoopState>();    
+            }
+            else {
+                _gameStateMachine.TranslateTo<PassiveNetGameLoopState>();
+            }
+            
         }
 
         private GameObject SpawnPlayer() {
@@ -53,10 +62,6 @@ namespace Architecture.StateMachine.States {
             var player = _gameplayFactory.CreatePlayerCharacter(pickedSpawner.Position, pickedSpawner.Rotation);
             pickedSpawner.TrackPlayer(player);
             return player;
-        }
-
-        private void SpawnTraders() {
-            
         }
 
         private void SetupCamera(GameObject player) {

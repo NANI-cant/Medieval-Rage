@@ -1,9 +1,12 @@
-﻿using ExitGames.Client.Photon;
+﻿using System;
+using ExitGames.Client.Photon;
 using Photon.Realtime;
 
 namespace Architecture.Services.Network {
     public class RoomService: IInRoomCallbacks, IOnEventCallback {
         private readonly INetworkService _networkService;
+
+        public event Action IAmMasterNow;
 
         public RoomService(INetworkService networkService) {
             _networkService = networkService;
@@ -19,7 +22,7 @@ namespace Architecture.Services.Network {
 
         public void OnMasterClientSwitched(Player newMasterClient) {
             if (_networkService.IsMaster) {
-                
+                IAmMasterNow?.Invoke();
             }
         }
 

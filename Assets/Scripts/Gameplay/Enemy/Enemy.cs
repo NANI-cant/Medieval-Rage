@@ -22,8 +22,7 @@ namespace Gameplay.Enemy {
         private AutoAttack _autoAttack;
         private EnemyAnimator _animator;
         private Health.Health _health;
-        private bool _isMine;
-        
+
         public EnemyStateMachine StateMachine { get; private set; }
 
         private void Awake() {
@@ -32,22 +31,10 @@ namespace Gameplay.Enemy {
             _autoAttack = GetComponent<AutoAttack>();
             _animator = GetComponent<EnemyAnimator>();
             _health = GetComponent<Health.Health>();
-            _isMine = true;
-            
+
             StateMachine = new EnemyStateMachine(_autoAttack, _mover, _aggro, _animator);
         }
 
-        public void Construct(bool isMine) => _isMine = isMine;
-
-        private void Start() {
-            if (_isMine) {
-                StateMachine.TranslateTo<CalmState>();        
-            }
-            else {
-                StateMachine.TranslateTo<NetworkAvatarState>();
-            }
-        }
-        
         private void OnEnable() => _health.Died += OnDied;
         private void OnDisable() => _health.Died -= OnDied;
         public void Update() => _animator.Speed = _mover.DesiredSpeed / _mover.MaxSpeed;

@@ -5,10 +5,8 @@ namespace Architecture.Bootstrappers {
     public class GameplayNetworkBootstrapper : MonoInstaller {
         public override void InstallBindings() {
             BindService<ResourcesNetworkPrefabProvider>();
-            BindService<GameClockSync>();
             
-            //BindService<NetworkGameplayFactory>();
-            BindService<NewNetworkGameplayFactory>();
+            BindService<NetworkGameplayFactory>();
             BindService<GameplayFactorySync>();
             
             BindService<NetworkGameEnd>();

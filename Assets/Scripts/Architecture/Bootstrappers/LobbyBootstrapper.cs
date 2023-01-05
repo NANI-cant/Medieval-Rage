@@ -1,13 +1,10 @@
-﻿using UI.Lobby;
-using UnityEngine;
-using Zenject;
+﻿using Zenject;
+using Lobby;
 
 namespace Architecture.Bootstrappers {
     public class LobbyBootstrapper : MonoInstaller {
-        [SerializeField] private LobbyView _lobbyView;
-        
         public override void InstallBindings() {
-            BindService<Lobby.LobbyModel>();
+            BindService<LobbyModel>();
         }
         
         private void BindService<TService>() 
