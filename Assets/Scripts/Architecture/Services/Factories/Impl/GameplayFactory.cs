@@ -32,7 +32,6 @@ namespace Architecture.Services.Factories.Impl {
         private readonly Dictionary<string, Transform> _containers = new();
         
         public event Action<GameObject> PlayerCreated;
-        public event Action<GameObject, EnemyId> EnemyCreated;
 
         public GameplayFactory(
             IPrefabProvider prefabProvider,
@@ -87,8 +86,6 @@ namespace Architecture.Services.Factories.Impl {
             enemy.GetComponent<Rotator>().Construct(enemyMetric.AngularSpeed, _timeProvider);
             enemy.GetComponent<Team>().Construct(_teamProvider.EnemyTeamId);
 
-            EnemyCreated?.Invoke(enemy, enemyId);
-            
             return enemy;
         }
 

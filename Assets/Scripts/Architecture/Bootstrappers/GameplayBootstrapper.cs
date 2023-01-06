@@ -25,7 +25,6 @@ namespace Architecture.Bootstrappers {
             BindService<TeamProvider>();
             BindService<AgentPriorityProvider>();
             BindService<GameClock>();
-            
         }
 
         private void BindService<TService>() 

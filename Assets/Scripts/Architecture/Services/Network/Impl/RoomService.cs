@@ -2,8 +2,8 @@
 using ExitGames.Client.Photon;
 using Photon.Realtime;
 
-namespace Architecture.Services.Network {
-    public class RoomService: IInRoomCallbacks, IOnEventCallback {
+namespace Architecture.Services.Network.Impl {
+    public class RoomService: IInRoomCallbacks {
         private readonly INetworkService _networkService;
 
         public event Action IAmMasterNow;
@@ -24,10 +24,6 @@ namespace Architecture.Services.Network {
             if (_networkService.IsMaster) {
                 IAmMasterNow?.Invoke();
             }
-        }
-
-        public void OnEvent(EventData photonEvent) {
-            
         }
 
         public void OnPlayerLeftRoom(Player otherPlayer) { }

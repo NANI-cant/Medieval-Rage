@@ -3,11 +3,13 @@ using UnityEngine;
 
 namespace Gameplay.Setup.Impl {
     public class EnemySpawner: MonoBehaviour, IEnemySpawner {
+        [SerializeField] private int _iD;
         [SerializeField] private EnemyPack[] _packs;
         [SerializeField] private float _spawningRadius;
         
         private readonly List<Health.Health> _trackedHealths = new ();
 
+        public int ID => _iD;
         public Vector3 Position => transform.position;
         public float SpawningRadius => _spawningRadius;
         public Quaternion Rotation => transform.rotation;

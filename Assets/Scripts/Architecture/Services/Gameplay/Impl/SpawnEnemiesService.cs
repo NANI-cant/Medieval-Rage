@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Architecture.Services.Factories;
 using Architecture.Services.General;
+using Architecture.Services.Network.Impl;
 using Gameplay.Setup;
 using UnityEngine;
 
@@ -10,17 +11,20 @@ namespace Architecture.Services.Gameplay.Impl {
         private readonly IBossSpawner _bossSpawner;
         private readonly IGameplayFactory _factory;
         private readonly IRandomService _randomService;
+        private readonly GameNetEventsService _gameNetEventsService;
 
         public SpawnEnemiesService(
             IEnemySpawner[] enemySpawners,
             IBossSpawner bossSpawner,
             IGameplayFactory factory,
-            IRandomService randomService
+            IRandomService randomService,
+            GameNetEventsService gameNetEventsService
         ) {
             _enemySpawners = enemySpawners;
             _bossSpawner = bossSpawner;
             _factory = factory;
             _randomService = randomService;
+            _gameNetEventsService = gameNetEventsService;
         }
 
         public void SpawnBoss() {
@@ -56,6 +60,8 @@ namespace Architecture.Services.Gameplay.Impl {
                 var position = spawner.Position + subPoints[i];
                 var enemy = _factory.CreateEnemy(enemyId, position, spawner.Rotation);
                 createdEnemies.Add(enemy);
+                
+                _gameNetEventsService.RaiseEnemySpawn(enemy, enemyId, spawner.ID);
             }
 
             return createdEnemies;
@@ -73,6 +79,37 @@ namespace Architecture.Services.Gameplay.Impl {
             }
             
             return points;
+        }
+    }
+
+    public class SpawnEnemiesAvatarsService {
+        private readonly IEnemySpawner[] _enemySpawners;
+        private readonly IBossSpawner _bossSpawner;
+        private readonly NetworkGameplayFactory _networkFactory;
+
+        public SpawnEnemiesAvatarsService(
+            IEnemySpawner[] enemySpawners,
+            IBossSpawner bossSpawner,
+            NetworkGameplayFactory networkFactory
+        ) {
+            _enemySpawners = enemySpawners;
+            _bossSpawner = bossSpawner;
+            _networkFactory = networkFactory;
+        }
+
+        public void SpawnEnemy(EnemyNetSpawnData enemyNetSpawnData) {
+            var enemy = _networkFactory.CreateEnemy(
+                enemyNetSpawnData.ViewID, 
+                enemyNetSpawnData.EnemyId, 
+                enemyNetSpawnData.Position,
+                enemyNetSpawnData.Rotation
+            );
+
+            foreach (var spawner in _enemySpawners) {
+                if(spawner.ID != enemyNetSpawnData.SpawnerId) continue;
+                
+                spawner.Track(enemy);
+            }
         }
     }
 }

@@ -6,8 +6,10 @@ namespace Architecture.Services.Network.Impl {
     public class LobbyService : ILobbyCallbacks {
         private readonly ISceneLoadService _sceneLoadService;
 
-        public LobbyService(ISceneLoadService sceneLoadService) {
+        public LobbyService(ISceneLoadService sceneLoadService, INetworkService networkService) {
             _sceneLoadService = sceneLoadService;
+            
+            networkService.AddCallbackTarget(this);
         }
         
         public void OnJoinedLobby() => _sceneLoadService.LoadLobby();

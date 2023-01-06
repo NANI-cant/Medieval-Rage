@@ -21,7 +21,7 @@ namespace Architecture.Bootstrappers {
 			BindService<ResourcesUIProvider>();
 			BindService<UnityTimeProvider>();
 			BindService<UnityInstantiateProvider>();
-			BindService<DestroyProvider>();
+			BindService<UnityDestroyProvider>();
 		}
 
         private void BindService<TService>() 

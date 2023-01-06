@@ -1,4 +1,5 @@
-﻿using Architecture.Services.Network.Impl;
+﻿using Architecture.Services.Gameplay.Impl;
+using Architecture.Services.Network.Impl;
 using Zenject;
 
 namespace Architecture.Bootstrappers {
@@ -6,11 +7,11 @@ namespace Architecture.Bootstrappers {
         public override void InstallBindings() {
             BindService<ResourcesNetworkPrefabProvider>();
             
+            BindService<GameNetEventsService>();
+            BindService<SpawnEnemiesAvatarsService>();
+            
             BindService<NetworkGameplayFactory>();
             BindService<GameplayFactorySync>();
-            
-            BindService<NetworkGameEnd>();
-            BindService<GameEndSync>();
         }
 
         private void BindService<TService>() 

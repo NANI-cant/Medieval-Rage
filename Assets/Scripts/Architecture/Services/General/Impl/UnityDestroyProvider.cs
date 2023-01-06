@@ -3,7 +3,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Architecture.Services.General.Impl {
-    public class DestroyProvider : IDestroyProvider {
+    public class UnityDestroyProvider : IDestroyProvider {
         public event Action<GameObject> Destroyed;
 
         public void Destroy(GameObject gameObject) {

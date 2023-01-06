@@ -52,31 +52,7 @@ namespace Architecture.Services.Network.Impl {
             networkService.AddCallbackTarget(this);
         }
 
-        public void OnEvent(EventData photonEvent) {
-            switch (photonEvent.Code) {
-                case NetworkCode.InstantiatePlayer: {
-                    object[] data = (object[]) photonEvent.CustomData;
-                    CreatePlayer((int) data[2], (Vector3) data[0], (Quaternion) data[1]);
-                    break;
-                }
-                case NetworkCode.InstantiateEnemy: {
-                    object[] data = (object[]) photonEvent.CustomData;
-                    CreateEnemy((int) data[0], (EnemyId) data[1], (Vector3) data[2], (Quaternion) data[3]);
-                    break;
-                }
-            }
-        }
-
-        private void CreatePlayer(int viewId, Vector3 position, Quaternion rotation) {
-            GameObject player = _instantiateProvider.Instantiate(_networkPrefabProvider.Player, position, rotation);
-            var playerMetric = _metricProvider.PlayerMetric;
-            
-            player.GetComponent<Health>().Construct(playerMetric.MaxHealth);
-            player.GetComponent<Team>().Construct(_teamProvider.NextPlayerTeamId);
-            player.GetComponent<PhotonView>().ViewID = viewId;
-        }
-
-        private void CreateEnemy(int viewId, EnemyId enemyId, Vector3 position, Quaternion rotation) {
+        public GameObject CreateEnemy(int viewId, EnemyId enemyId, Vector3 position, Quaternion rotation) {
             var enemy = _instantiateProvider.Instantiate(_prefabProvider.Enemy(enemyId), position, rotation);
             var enemyMetric = _metricProvider.EnemyMetric(enemyId);
             
@@ -91,6 +67,27 @@ namespace Architecture.Services.Network.Impl {
             
             enemy.GetComponent<PhotonView>().ViewID = viewId;
             enemy.GetComponent<Enemy>().StateMachine.TranslateTo<NetworkAvatarState>();
+
+            return enemy;
+        }
+
+        public void OnEvent(EventData photonEvent) {
+            switch (photonEvent.Code) {
+                case NetworkCode.InstantiatePlayer: {
+                    object[] data = (object[]) photonEvent.CustomData;
+                    CreatePlayer((int) data[2], (Vector3) data[0], (Quaternion) data[1]);
+                    break;
+                }
+            }
+        }
+
+        private void CreatePlayer(int viewId, Vector3 position, Quaternion rotation) {
+            GameObject player = _instantiateProvider.Instantiate(_networkPrefabProvider.Player, position, rotation);
+            var playerMetric = _metricProvider.PlayerMetric;
+            
+            player.GetComponent<Health>().Construct(playerMetric.MaxHealth);
+            player.GetComponent<Team>().Construct(_teamProvider.NextPlayerTeamId);
+            player.GetComponent<PhotonView>().ViewID = viewId;
         }
     }
 }
