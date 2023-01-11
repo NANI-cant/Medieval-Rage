@@ -18,5 +18,6 @@ namespace Architecture.Services.Network {
         bool RaiseEvent(byte code, object[] data, RaiseEventOptions raiseEventOptions, SendOptions sendOptions);
         bool AllocateViewID(PhotonView view);
         bool Leave();
+        int GetMyId();
     }
 }

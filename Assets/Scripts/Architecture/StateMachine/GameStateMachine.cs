@@ -30,7 +30,7 @@ namespace Architecture.StateMachine {
             SpawnEnemiesAvatarsService spawnEnemiesAvatarsService) 
         {
             States = new Dictionary<Type, State> {
-                [typeof(InitializationState)] = new InitializationState(this, gameplayFactory, uiFactory, randomService, gameClock, playerSpawners, traderSpawnPoints, camera, networkService),
+                [typeof(InitializationState)] = new InitializationState(this, gameplayFactory, uiFactory, randomService, gameClock, playerSpawners, traderSpawnPoints, camera, networkService, gameNetEventsService),
                 [typeof(GameLoopState)] = new GameLoopState(this, spawnEnemiesService, bossSpawner, gameClock, gameNetEventsService),
                 [typeof(PassiveNetGameLoopState)] = new PassiveNetGameLoopState(this, roomService, gameNetEventsService, networkGameplayFactory, spawnEnemiesAvatarsService),
                 [typeof(GameEndState)] = new GameEndState(this, gameClock, uiFactory, inputService),

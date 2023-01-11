@@ -4,5 +4,6 @@
         public const byte InstantiateEnemy = 1;
         public const byte GameClockTime = 2;
         public const byte GameEnded = 3;
+        public const byte PlayerShouldSpawn = 4;
     }
 }

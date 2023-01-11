@@ -24,6 +24,7 @@ namespace Architecture.Services.Network.Impl {
         public bool RaiseEvent(byte code, object[] data, RaiseEventOptions raiseEventOptions, SendOptions sendOptions) => PhotonNetwork.RaiseEvent(code, data, raiseEventOptions, sendOptions);
         public bool AllocateViewID(PhotonView view) => PhotonNetwork.AllocateViewID(view);
         public bool Leave() => PhotonNetwork.LeaveRoom();
+        public int GetMyId() => PhotonNetwork.LocalPlayer.ActorNumber;
 
         public bool CreateRoom() {
             var options = new RoomOptions() {

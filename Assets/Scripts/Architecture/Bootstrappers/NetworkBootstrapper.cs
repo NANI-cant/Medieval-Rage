@@ -1,5 +1,4 @@
-﻿using Architecture.Services.Network;
-using Architecture.Services.Network.Impl;
+﻿using Architecture.Services.Network.Impl;
 using Zenject;
 
 namespace Architecture.Bootstrappers {

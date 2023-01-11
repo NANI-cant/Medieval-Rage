@@ -1,7 +1,7 @@
 ﻿using Gameplay.Setup;
 using UnityEngine;
 
-namespace Architecture.Services.Network.Impl {
+namespace Network.Gameplay {
     public readonly struct EnemyNetSpawnData {
         public readonly int ViewID;
         public readonly EnemyId EnemyId;

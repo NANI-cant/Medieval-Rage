@@ -3,6 +3,7 @@ using Architecture.Services.Factories;
 using Architecture.Services.Gameplay;
 using Architecture.Services.General;
 using Architecture.Services.Network;
+using Architecture.Services.Network.Impl;
 using CameraLogic;
 using Gameplay.Setup;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace Architecture.StateMachine.States {
         private readonly ITraderSpawner[] _traderSpawnPoints;
         private readonly Camera _camera;
         private readonly INetworkService _networkService;
+        private readonly GameNetEventsService _gameNetEventsService;
 
         public InitializationState(
             GameStateMachine gameStateMachine,
@@ -28,7 +30,8 @@ namespace Architecture.StateMachine.States {
             IPlayerSpawner[] playerSpawners,
             ITraderSpawner[] traderSpawnPoints,
             Camera camera,
-            INetworkService networkService
+            INetworkService networkService,
+            GameNetEventsService gameNetEventsService
         ) {
             _gameStateMachine = gameStateMachine;
             _gameplayFactory = gameplayFactory;
@@ -39,6 +42,7 @@ namespace Architecture.StateMachine.States {
             _traderSpawnPoints = traderSpawnPoints;
             _camera = camera;
             _networkService = networkService;
+            _gameNetEventsService = gameNetEventsService;
         }
 
         public override void Enter() {
